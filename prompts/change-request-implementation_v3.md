@@ -18,7 +18,7 @@ Keeping repository changes clean, justified, and auditable
 
 The result is a well-documented, test-protected change that integrates seamlessly into an established codebase while preserving architectural integrity, functional intent, and long-term maintainability.
 
-**Version:** 2 | **Date:** 2025-12-24 | **Author:** jochim
+**Version:** 3 | **Date:** 2026-01-01 | **Author:** jochim
 **Tags:** None
 
 ---
@@ -129,7 +129,7 @@ e. Explicitly show how tests now protect against regression.
 
 ### **7. User-Facing Documentation**
 
-a. Update manuals, help texts, or usage instructions **only if user behavior or expectations change**.
+a. Update changelog, manuals, help texts, or usage instructions **only if user behavior or expectations change**.
 b. Keep language non-technical and clear.
 c. If no update is required, explain why.
 

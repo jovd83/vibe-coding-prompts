@@ -2,7 +2,7 @@
 
 > Vibe code one or more new features into an existing project
 
-**Version:** 3 | **Date:** 2025-12-23 | **Author:** jochim
+**Version:** 4 | **Date:** 2026-01-01 | **Author:** jochim
 **Tags:** None
 
 ---
@@ -65,6 +65,7 @@ For **each feature** listed under “Implement the following features” perform
 7. **Repository Maintenance**
    a. Update the root-level `README.md` file if the new feature introduces changes relevant to project setup, usage, configuration, or dependencies.
    b. Clearly explain in final report if updates were necessary.
+   c. Add changes to changelog
 
 Repeat the full process for every feature listed.
 

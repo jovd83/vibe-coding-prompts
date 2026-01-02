@@ -2,7 +2,7 @@
 
 > Let the agent fix a bug
 
-**Version:** 2 | **Date:** 2025-12-24 | **Author:** jochim
+**Version:** 3 | **Date:** 2026-01-01 | **Author:** jochim
 **Tags:** None
 
 ---
@@ -66,6 +66,7 @@ Given a user-submitted bug report or description, perform the following steps:
 7. **Repository Maintenance**
    a. Update the `README.md` if anything changed about setup, usage, or dev tools.
    b. Note if no changes were needed and why.
+   c. Add changes to changelog
 
 8. **Bug Fix Report**
    a. Write a clear, structured report that summarizes:
