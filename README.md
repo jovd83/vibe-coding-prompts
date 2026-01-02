@@ -32,6 +32,13 @@ The prompts are located in the `prompts/` directory.
 3.  **Paste & Run:** Paste it into your LLM chat (ChatGPT, Claude, etc.) or Agentic IDE (Cursor, Windsurf).
 4.  **Follow Instructions:** Most prompts require you to fill in a placeholder (like `{{User-submitted bug}}` or `[[Features]]`) or run a specific command.
 
+## 📦 JSON Import (Prompthive)
+
+You can also import the full prompt collection directly into [Prompthive](https://github.com/jovd83/prompthive) using the JSON backup file:
+
+*   **File:** [`prompthive_json/prompthive-backup-vibecoding.json`](prompthive_json/prompthive-backup-vibecoding.json)
+*   **Usage:** Go to your Prompthive settings/import area and upload this file to restore all prompts, collections, and tags instantly.
+
 ## 🔗 Original Project
 
 These prompts were refined during the development of **Prompthive**. Check it out here:
