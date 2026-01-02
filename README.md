@@ -34,7 +34,7 @@ The prompts are located in the `prompts/` directory.
 
 ## 📦 JSON Import (Prompthive)
 
-You can also import the full prompt collection directly into [Prompthive](https://github.com/jovd83/prompthive) using the JSON backup file:
+You can also import the full prompt collection directly into [Prompthive](https://github.com/jovd83/prompthive) using the JSON export file:
 
 *   **File:** [`prompthive_json/prompthive-backup-vibecoding.json`](prompthive_json/prompthive-backup-vibecoding.json)
 *   **Usage:** Go to your Prompthive settings/import area and upload this file to restore all prompts, collections, and tags instantly.
