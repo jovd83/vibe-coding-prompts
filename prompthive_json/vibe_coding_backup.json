@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "exportedAt": "2026-01-02T18:36:15.653Z",
+  "exportedAt": "2026-01-09T13:55:32.651Z",
   "prompts": [
     {
       "id": "cmjiat2o6008fvwwcjfdho7di",
@@ -356,11 +356,24 @@
       "collectionIds": [
         "cmjiat2cr008dvwwciollsthp"
       ],
-      "viewCount": 11,
-      "copyCount": 14,
+      "viewCount": 17,
+      "copyCount": 23,
       "createdAt": "2025-12-23T08:03:48.098Z",
-      "updatedAt": "2026-01-01T11:27:57.809Z",
+      "updatedAt": "2026-01-09T12:21:19.255Z",
       "versions": [
+        {
+          "versionNumber": 5,
+          "content": "**Context:**\r\nYou are working on the  existing software project, which has a mature codebase, a comprehensive design system, testing infrastructure, and documentation. You are now ready to implement new features in the project. Each feature must be approached holistically, covering all parts of the product development lifecycle: from analysis and design through code, testing, documentation, and user guidance. All changes should integrate seamlessly with existing architecture, design, and documentation practices.\r\n\r\nThe project structure includes:\r\n\r\n* Technical diagrams and data models are stored in `docs/diagrams/`\r\n* Epics and user stories are stored in `docs/functional analysis/`\r\n* Technical documentation is stored in `docs/technical/`\r\n* Wireframes are stored in `docs/wireframes/`\r\n* Playwright tests reside in the `frontend-tests/` directory\r\n* The root `README.md` file contains setup instructions, usage, and general project information\r\n\r\nAll assets must be updated in these respective locations if the new feature impacts them. The codebase maintains at least 80% test coverage across all unit-tested classes and files.\r\n\r\n**Role:**\r\nYou are a senior full-stack software engineer, UX/UI designer, technical writer, and product strategist with over 20 years of experience. You specialize in implementing new software features in mature codebases with full traceability across the lifecycle. You write production-ready code, maintain rigorous testing standards, craft usable documentation, and ensure UX is aligned with best practices. You understand how to work within and extend existing systems thoughtfully and with minimal friction.\r\n\r\n**Implement the following features**\r\n[[Features]]\r\n\r\n**Action:**\r\nFor **each feature** listed under “Implement the following features” perform the following sequential steps:\r\n\r\n1. **Planning & Specification**\r\n   a. Write or update relevant *epics*, *user stories*, and *acceptance criteria* located in `docs/functional analysis/`.\r\n   b. Clearly explain in final report if updates were necessary.\r\n\r\n2. **Design Updates**\r\n   a. If applicable, update or create *wireframes* and store them in `docs/wireframes/`.\r\n   b. Include before/after comparisons and justify any changes.\r\n   c. Clearly explain in final report if updates were necessary.\r\n\r\n3. **Architecture & Documentation**\r\n   a. Update *technical documentation* and *diagrams* as needed. Store textual documentation in `docs/technical/` and any architecture diagrams or data models in `docs/diagrams/`.\r\n   b. Re-render any altered diagrams and reflect relevant system changes.\r\n   c. Clearly explain in final report if updates were necessary.\r\n\r\n4. **Implementation**\r\n   a. Write the actual *code* to implement the feature. Maintain alignment with architectural patterns and existing coding conventions.\r\n   b. Ensure all code is production-quality and well-commented.\r\n   c. Clearly explain in final report what was added/updated.\r\n\r\n5. **Testing**\r\n   a. Write or update *unit tests* and ensure overall test coverage for all affected classes/files remains ≥80%.\r\n   b. Provide before/after coverage metrics.\r\n   c. Update or write *Playwright end-to-end tests* in the `frontend-tests/` directory. Self-heal existing tests if they break.\r\n   d. Clearly explain in final report if updates were necessary.\r\n\r\n6. **User-Facing Documentation**\r\n   a. Update or add any *manual/help pages* to reflect new functionality or workflows, if applicable.\r\n   b. Ensure documentation is non-technical and helpful for end users.\r\n   c. If not needed, explain briefly.\r\n\r\n7. **Repository Maintenance**\r\n   a. Update the root-level `README.md` file if the new feature introduces changes relevant to project setup, usage, configuration, or dependencies.\r\n   b. Clearly explain in final report if updates were necessary.\r\n   c. Add changes to changelog\r\n8. **Feature Report**\r\n   a. Create a concise, high-level summary block encapsulating the changes, components touched, coverage stats, and documentation status for quick reference.\r\n\r\nRepeat the full process for every feature listed.\r\n\r\n**Final report Format:**\r\nUse **markdown** with the following structured layout for **each feature**:\r\n\r\n````markdown\r\n### Feature: [Feature Title]\r\n\r\n#### 📘 Epics / User Stories / Acceptance Criteria\r\n[Markdown bullets or tables — updates go in `docs/functional analysis/`]\r\n\r\n#### 🎨 Updated Wireframes (`docs/wireframes/`)\r\n- [Description of what changed, why]\r\n- [Link or placeholder for wireframe image/render]\r\n\r\n#### 🧠 Technical Documentation & Diagrams\r\n- Text updates: `docs/technical/`\r\n- Diagrams/datamodels: `docs/diagrams/`\r\n- [Markdown description + placeholders or links to visuals]\r\n\r\n#### 💻 Code Implementation\r\n```typescript or other language block\r\nwhat had been added/edited\r\n✅ Unit Tests & Coverage\r\n[Description of tests created/updated]\r\n\r\nBefore: XX% → After: XX% for all affected files\r\n\r\nTypeScript\r\n\r\nwhat had been added/edited\r\n🌐 Playwright Tests (frontend-tests/)\r\n[Summary of new/updated test cases and healing]\r\n\r\nTypeScript\r\n\r\nwhat had been added/edited\r\n📄 Manual/Help Pages\r\n[Summary or markdown content for user help updates]\r\n\r\nUpdated as needed based on feature impact\r\n\r\n📘 README.md Changes\r\nwhat had been added/edited\r\n\r\n📊 Feature Implementation Report\r\nMarkdown\r\n\r\n**Feature:** [Short Title]\r\n**Scope:** [e.g. Frontend, Backend, Database, Docs]\r\n**Summary:** [Brief description of the value added]\r\n**Components Touched:** [Key files or modules modified]\r\n**Test Coverage:** [XX% Verified]\r\n**Documentation Updated:** [List: Epics, Tech, Wireframes, Manual]\r\n**Status:** ✅ Implemented & Verified\r\n\r\n````\r\n\r\nAI reference\r\n*Add some kind of technical id for which you, the AI can indentify it and do a rollback when asked for\r\n\r\n\r\n## Variables\r\n| Name | Description |\r\n|------|-------------|\r\n| Features | The list of features |\r\n\r\n## Metadata\r\n* **Collection:** Vibe coding\r\n* **Source:** None",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[{\"key\":\"Features\",\"description\":\"The list of features\"}]",
+          "model": null,
+          "changelog": "added report",
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-01-09T11:20:53.853Z"
+        },
         {
           "versionNumber": 4,
           "content": "**Context:**\r\nYou are working on the  existing software project, which has a mature codebase, a comprehensive design system, testing infrastructure, and documentation. You are now ready to implement new features in the project. Each feature must be approached holistically, covering all parts of the product development lifecycle: from analysis and design through code, testing, documentation, and user guidance. All changes should integrate seamlessly with existing architecture, design, and documentation practices.\r\n\r\nThe project structure includes:\r\n\r\n* Technical diagrams and data models are stored in `docs/diagrams/`\r\n* Epics and user stories are stored in `docs/functional analysis/`\r\n* Technical documentation is stored in `docs/technical/`\r\n* Wireframes are stored in `docs/wireframes/`\r\n* Playwright tests reside in the `frontend-tests/` directory\r\n* The root `README.md` file contains setup instructions, usage, and general project information\r\n\r\nAll assets must be updated in these respective locations if the new feature impacts them. The codebase maintains at least 80% test coverage across all unit-tested classes and files.\r\n\r\n**Role:**\r\nYou are a senior full-stack software engineer, UX/UI designer, technical writer, and product strategist with over 20 years of experience. You specialize in implementing new software features in mature codebases with full traceability across the lifecycle. You write production-ready code, maintain rigorous testing standards, craft usable documentation, and ensure UX is aligned with best practices. You understand how to work within and extend existing systems thoughtfully and with minimal friction.\r\n\r\n**Implement the following features**\r\n[[Features]]\r\n\r\n**Action:**\r\nFor **each feature** listed under “Implement the following features” perform the following sequential steps:\r\n\r\n1. **Planning & Specification**\r\n   a. Write or update relevant *epics*, *user stories*, and *acceptance criteria* located in `docs/functional analysis/`.\r\n   b. Clearly explain in final report if updates were necessary.\r\n\r\n2. **Design Updates**\r\n   a. If applicable, update or create *wireframes* and store them in `docs/wireframes/`.\r\n   b. Include before/after comparisons and justify any changes.\r\n   c. Clearly explain in final report if updates were necessary.\r\n\r\n3. **Architecture & Documentation**\r\n   a. Update *technical documentation* and *diagrams* as needed. Store textual documentation in `docs/technical/` and any architecture diagrams or data models in `docs/diagrams/`.\r\n   b. Re-render any altered diagrams and reflect relevant system changes.\r\n   c. Clearly explain in final report if updates were necessary.\r\n\r\n4. **Implementation**\r\n   a. Write the actual *code* to implement the feature. Maintain alignment with architectural patterns and existing coding conventions.\r\n   b. Ensure all code is production-quality and well-commented.\r\n   c. Clearly explain in final report what was added/updated.\r\n\r\n5. **Testing**\r\n   a. Write or update *unit tests* and ensure overall test coverage for all affected classes/files remains ≥80%.\r\n   b. Provide before/after coverage metrics.\r\n   c. Update or write *Playwright end-to-end tests* in the `frontend-tests/` directory. Self-heal existing tests if they break.\r\n   d. Clearly explain in final report if updates were necessary.\r\n\r\n6. **User-Facing Documentation**\r\n   a. Update or add any *manual/help pages* to reflect new functionality or workflows, if applicable.\r\n   b. Ensure documentation is non-technical and helpful for end users.\r\n   c. If not needed, explain briefly.\r\n\r\n7. **Repository Maintenance**\r\n   a. Update the root-level `README.md` file if the new feature introduces changes relevant to project setup, usage, configuration, or dependencies.\r\n   b. Clearly explain in final report if updates were necessary.\r\n   c. Add changes to changelog\r\n\r\nRepeat the full process for every feature listed.\r\n\r\n**Final report Format:**\r\nUse **markdown** with the following structured layout for **each feature**:\r\n\r\n````markdown\r\n### Feature: [Feature Title]\r\n\r\n#### 📘 Epics / User Stories / Acceptance Criteria\r\n[Markdown bullets or tables — updates go in `docs/functional analysis/`]\r\n\r\n#### 🎨 Updated Wireframes (`docs/wireframes/`)\r\n- [Description of what changed, why]\r\n- [Link or placeholder for wireframe image/render]\r\n\r\n#### 🧠 Technical Documentation & Diagrams\r\n- Text updates: `docs/technical/`\r\n- Diagrams/datamodels: `docs/diagrams/`\r\n- [Markdown description + placeholders or links to visuals]\r\n\r\n#### 💻 Code Implementation\r\n```typescript or other language block\r\nwhat had been added/edited\r\n````\r\n\r\n#### ✅ Unit Tests & Coverage\r\n\r\n* [Description of tests created/updated]\r\n* Before: XX% → After: XX% for all affected files\r\n\r\n```typescript\r\nwhat had been added/edited\r\n```\r\n\r\n#### 🌐 Playwright Tests (`frontend-tests/`)\r\n\r\n* [Summary of new/updated test cases and healing]\r\n\r\n```typescript\r\nwhat had been added/edited\r\n```\r\n\r\n#### 📄 Manual/Help Pages\r\n\r\n* [Summary or markdown content for user help updates]\r\n* Updated as needed based on feature impact\r\n\r\n#### 📘 README.md Changes\r\n* what had been added/edited\r\n\r\n#### AI reference\r\n*Add some kind of technical id for which you, the AI can indentify it and do a rollback when asked for\r\n\r\n",
@@ -475,9 +488,9 @@
         "cmjiat2cr008dvwwciollsthp"
       ],
       "viewCount": 6,
-      "copyCount": 8,
+      "copyCount": 15,
       "createdAt": "2025-12-23T08:03:56.024Z",
-      "updatedAt": "2026-01-02T07:50:29.669Z",
+      "updatedAt": "2026-01-09T13:48:28.763Z",
       "versions": [
         {
           "versionNumber": 3,
@@ -533,10 +546,10 @@
       "collectionIds": [
         "cmjiat2cr008dvwwciollsthp"
       ],
-      "viewCount": 8,
-      "copyCount": 6,
+      "viewCount": 10,
+      "copyCount": 11,
       "createdAt": "2025-12-23T08:03:56.833Z",
-      "updatedAt": "2026-01-01T11:36:56.165Z",
+      "updatedAt": "2026-01-09T11:21:31.831Z",
       "versions": [
         {
           "versionNumber": 3,
@@ -592,10 +605,10 @@
       "collectionIds": [
         "cmjiat2cr008dvwwciollsthp"
       ],
-      "viewCount": 5,
-      "copyCount": 1,
+      "viewCount": 7,
+      "copyCount": 2,
       "createdAt": "2025-12-26T08:14:22.477Z",
-      "updatedAt": "2026-01-01T11:24:47.260Z",
+      "updatedAt": "2026-01-07T07:41:21.819Z",
       "versions": [
         {
           "versionNumber": 2,
@@ -639,10 +652,10 @@
       "collectionIds": [
         "cmjiat2cr008dvwwciollsthp"
       ],
-      "viewCount": 3,
-      "copyCount": 1,
+      "viewCount": 4,
+      "copyCount": 2,
       "createdAt": "2026-01-01T10:58:47.974Z",
-      "updatedAt": "2026-01-02T07:10:34.594Z",
+      "updatedAt": "2026-01-05T18:28:45.551Z",
       "versions": [
         {
           "versionNumber": 1,
@@ -656,6 +669,118 @@
           "resultImage": null,
           "attachments": [],
           "createdAt": "2026-01-01T10:58:47.974Z"
+        }
+      ]
+    },
+    {
+      "id": "cmk3q5si9000caxmcleclk1u0",
+      "title": "Start a Vibe Reverse Engineering Project",
+      "description": "A structured framework for transforming legacy codebases into modern software through forensic analysis, rigorous auditing, and \"before and after\" visualization.\r\n\r\nIt enforces a production-grade workflow that reverse-engineers business logic and refactors code while strictly preserving the original intent through safety-net testing",
+      "tags": [
+        "vibe"
+      ],
+      "collections": [
+        "Vibe coding"
+      ],
+      "collectionIds": [
+        "cmjiat2cr008dvwwciollsthp"
+      ],
+      "viewCount": 2,
+      "copyCount": 2,
+      "createdAt": "2026-01-07T07:56:35.601Z",
+      "updatedAt": "2026-01-07T09:29:35.879Z",
+      "versions": [
+        {
+          "versionNumber": 1,
+          "content": "**Context:**\r\nYou are taking ownership of an **existing codebase** (The \"Legacy Core\"). Your objective is to perform a deep-dive analysis, reverse-engineer its logic, document its current state, and execute a modernization strategy (refactor, rewrite, or strictly document). You will treat this process with the rigor of a forensic investigation combined with high-end product engineering.\r\n\r\nThe project output structure must be standardized:\r\n\r\n* **Audit Reports:** Stored in `docs/analysis/audit/`\r\n* **Current-State Visualization:** Technical diagrams of the *existing* logic in `docs/diagrams/current-state/` (Source + Rendered)\r\n* **Future-State Design:** Diagrams of the *proposed* architecture in `docs/diagrams/target-state/` (Source + Rendered)\r\n* **Functional Specs:** Reverse-engineered logic mapped to `docs/functional-specs/`\r\n* **Tests:** Characterization tests (Snapshot tests) in `tests/safety-net/`\r\n* **Refactored Code:** Clean, modernized code in `src/` (or equivalent)\r\n\r\n---\r\n\r\n**Role:**\r\nYou are an **Elite Software Archaeologist & Modernization Architect** with 20+ years of experience in legacy systems, cloud-native transformations, and code forensics. You excel at reading obfuscated or spaghetti code, understanding the original developer's intent, and translating it into clean, modern, well-documented architecture. You prioritize \"Chesterton's Fence\" (understanding *why* something exists before changing it).\r\n\r\n---\r\n\r\n**Input Code / Repository Info**\r\n[[PASTE CODE HERE OR LINK REPO]]\r\n\r\n**Goal:**\r\n[[GOAL]]\r\n\r\n---\r\n\r\n**Action:**\r\nFor the provided code, perform the following sequential steps:\r\n\r\n### 0. **The Laboratory Setup**\r\n   a. Create the folder structure described in the Context.\r\n   b. Initialize a `MANIFEST.md` to catalog all files found in the input.\r\n   c. Set up a \"Safety Net\" testing harness (Vitest, Jest, or Pytest) to capture current behavior.\r\n\r\n### 1. **Forensic Analysis (The Autopsy)**\r\n   a. Analyze the *Tech Stack* and *Dependencies* (identify outdated libraries/security risks).\r\n   b. specific *Code Smells*, *Anti-patterns*, and *Cyclomatic Complexity* hotspots.\r\n   c. Document findings in `docs/analysis/audit/code-health-report.md`.\r\n\r\n### 2. **Visualization (Mapping the Territory)**\r\n   a. Create **Flowcharts** and **Sequence Diagrams** representing the *current* logic.\r\n   b. **Render each diagram as an image** (PNG/SVG) with naming convention:\r\n      - `diagram-current-[logic-flow]-YYYYMMDD-HHMMSS.png`\r\n   c. Include timestamp watermark (bottom-right).\r\n   d. Store source (.mmd/.puml) and images in `docs/diagrams/current-state/`.\r\n\r\n### 3. **Functional Extraction**\r\n   a. Reverse-engineer the code into *User Stories* or *Business Logic Rules*.\r\n   b. Write \"As-Is\" specifications in `docs/functional-specs/`.\r\n   c. Identify edge cases the original code handles (often invisible to the user).\r\n\r\n### 4. **Strategy & Architecture (The Plan)**\r\n   a. Define the *Target Architecture* based on the user's Goal (Refactor vs. Rewrite).\r\n   b. Create diagrams for the *New* structure.\r\n   c. **Render as images** naming convention: `diagram-target-[architecture]-YYYYMMDD-HHMMSS.png`.\r\n   d. Store in `docs/diagrams/target-state/`.\r\n\r\n### 5. **Execution (The Modernization)**\r\n   a. **Refactor/Rewrite** the code applying SOLID principles and modern patterns.\r\n   b. Add strict typing (e.g., TypeScript, Python Type Hints) where missing.\r\n   c. Add JSDoc/Docstrings to all functions explaining parameters and returns.\r\n\r\n### 6. **Verification**\r\n   a. Write Unit Tests for the new code.\r\n   b. Verify new behavior matches the \"Safety Net\" expectations (unless bug fixing).\r\n   c. Aim for high coverage on critical paths.\r\n\r\n### 7. **Final Documentation**\r\n   a. Create a `MIGRATION.md` guide (How we got from A to B).\r\n   b. Update `README.md` to reflect the new state.\r\n\r\n---\r\n\r\n**Final Report Format:**\r\nUse **markdown** with the following structured layout:\r\n\r\n## 🔍 Forensic Report: [Project/Module Name]\r\n\r\n### 📊 Executive Summary\r\n[Brief assessment of the legacy code quality, business value, and the work performed]\r\n\r\n---\r\n\r\n### 1. 🏥 Code Health & Audit\r\n- **Legacy Stack:** [Languages, Versions]\r\n- **Complexity Score:** [Low/Medium/High]\r\n- **Critical Issues Found:**\r\n  - 🔴 [Issue 1]\r\n  - 🟡 [Issue 2]\r\n\r\n#### Functional Extraction (What it actually does)\r\n* **Logic A:** [Explanation]\r\n* **Logic B:** [Explanation]\r\n\r\n---\r\n\r\n### 2. 🗺️ Visualizing the Change\r\n\r\n#### Current State (The \"Before\")\r\n* **Source:** `diagram-current-[name]-source.mmd`\r\n* **Rendered:** `diagram-current-[name]-YYYYMMDD-HHMMSS.png`\r\n\r\n![Current State Diagram](docs/diagrams/current-state/diagram-current-[name]-YYYYMMDD-HHMMSS.png)\r\n\r\n```mermaid\r\n%% Diagram source code",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[{\"key\":\"PASTE CODE HERE OR LINK REPO\",\"description\":\"\"},{\"key\":\"GOAL\",\"description\":\"\"}]",
+          "model": null,
+          "changelog": null,
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-01-07T07:56:35.601Z"
+        }
+      ]
+    },
+    {
+      "id": "cmk5xj93q000gaxmcbbnjl2mh",
+      "title": "Smart Major Release Orchestrator - Split from master",
+      "description": "This prompt acts as an autonomous Release Manager for \"Vibe Coding\" projects. It automates the transition from one major version to the next:\r\n1. Determine Version Numbers\r\n2. Git Operations (Freeze & Branch)\r\n3. Apply Updates (On the new branch)",
+      "tags": [
+        "vibe"
+      ],
+      "collections": [
+        "Vibe coding"
+      ],
+      "collectionIds": [
+        "cmjiat2cr008dvwwciollsthp"
+      ],
+      "viewCount": 3,
+      "copyCount": 0,
+      "createdAt": "2026-01-08T20:58:33.303Z",
+      "updatedAt": "2026-01-08T21:00:29.036Z",
+      "versions": [
+        {
+          "versionNumber": 2,
+          "content": "@workspace Act as a Release Manager and perform a Major Version Release.\r\n\r\n**1. Determine Version Numbers:**\r\n* Read the current version number inside `README.md`.\r\n* Calculate the **Next Major Version** by strictly following Semantic Versioning (Major.Minor.Patch):\r\n    * Increment the MAJOR number by 1.\r\n    * Reset MINOR and PATCH to 0.\r\n    * *Examples:* 2.3.1 becomes 3.0.0; 4.0.0 becomes 5.0.0.\r\n* The release codename is: [[RELEASE_CODENAME]].\r\n\r\n**2. Git Operations (Freeze & Branch):**\r\n* **Freeze:** Create a git tag on the *current* commit (before edits) named `legacy-freeze-v{Current_Version}`.\r\n* **Branch:** Create and checkout a new branch named `release/v{New_Major_Version}-[[RELEASE_CODENAME]]`.\r\n\r\n**3. Apply Updates (On the new branch):**\r\n* **README.md:** Replace the old version number with the {New_Major_Version}.\r\n* **CHANGELOG.md:** Add a new top-level header: `## {New_Major_Version} - [[RELEASE_CODENAME]]`.\r\n\r\nPlease output the calculated version numbers to confirm logic, apply the file edits, and generate the git commands.",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[{\"key\":\"RELEASE_CODENAME\",\"description\":\"\"}]",
+          "model": null,
+          "changelog": "changed title",
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-01-08T21:00:28.008Z"
+        },
+        {
+          "versionNumber": 1,
+          "content": "@workspace Act as a Release Manager and perform a Major Version Release.\r\n\r\n**1. Determine Version Numbers:**\r\n* Read the current version number inside `README.md`.\r\n* Calculate the **Next Major Version** by strictly following Semantic Versioning (Major.Minor.Patch):\r\n    * Increment the MAJOR number by 1.\r\n    * Reset MINOR and PATCH to 0.\r\n    * *Examples:* 2.3.1 becomes 3.0.0; 4.0.0 becomes 5.0.0.\r\n* The release codename is: [[RELEASE_CODENAME]].\r\n\r\n**2. Git Operations (Freeze & Branch):**\r\n* **Freeze:** Create a git tag on the *current* commit (before edits) named `legacy-freeze-v{Current_Version}`.\r\n* **Branch:** Create and checkout a new branch named `release/v{New_Major_Version}-[[RELEASE_CODENAME]]`.\r\n\r\n**3. Apply Updates (On the new branch):**\r\n* **README.md:** Replace the old version number with the {New_Major_Version}.\r\n* **CHANGELOG.md:** Add a new top-level header: `## {New_Major_Version} - [[RELEASE_CODENAME]]`.\r\n\r\nPlease output the calculated version numbers to confirm logic, apply the file edits, and generate the git commands.",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[{\"key\":\"RELEASE_CODENAME\",\"description\":\"\"}]",
+          "model": null,
+          "changelog": null,
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-01-08T20:58:33.303Z"
+        }
+      ]
+    },
+    {
+      "id": "cmk5xncxv000maxmcq61qv34e",
+      "title": "Release Cycle Finalizer (Merge & Tag)",
+      "description": "Safely closes the release loop by merging the temporary \"Major Release\" branch back into the main codebase.",
+      "tags": [
+        "vibe"
+      ],
+      "collections": [
+        "Vibe coding"
+      ],
+      "collectionIds": [
+        "cmjiat2cr008dvwwciollsthp"
+      ],
+      "viewCount": 1,
+      "copyCount": 0,
+      "createdAt": "2026-01-08T21:01:44.899Z",
+      "updatedAt": "2026-01-08T21:01:46.083Z",
+      "versions": [
+        {
+          "versionNumber": 1,
+          "content": "@workspace Act as a Release Manager. We are finalizing the release cycle and need to merge the new major version back into the main codebase.\r\n\r\n**1. Identify Branches:**\r\n* Detect the current release branch we are on (e.g., `release/v...`).\r\n* Identify the original primary branch (usually `main` or `master`).\r\n\r\n**2. Merge Strategy:**\r\n* Switch to the primary branch.\r\n* pull the latest changes from remote to ensure the primary branch is up to date.\r\n* Merge the release branch into the primary branch.\r\n    * *Safety Check:* If there are merge conflicts, stop and list the conflicting files. Do not resolve them automatically.\r\n\r\n**3. Finalize:**\r\n* Once merged, create a final git tag on this commit using the new version number found in `README.md` (e.g., `v3.0.0`).\r\n* Ask if I want to delete the release branch now that it is merged.\r\n\r\nPlease generate the specific git commands to execute this workflow.",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[]",
+          "model": null,
+          "changelog": null,
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-01-08T21:01:44.899Z"
         }
       ]
     }
