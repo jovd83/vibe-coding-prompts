@@ -1,16 +1,3 @@
-# Start a Vibe Reverse Engineering Project
-
-> A structured framework for transforming legacy codebases into modern software through forensic analysis, rigorous auditing, and "before and after" visualization.
-
-It enforces a production-grade workflow that reverse-engineers business logic and refactors code while strictly preserving the original intent through safety-net testing
-
-**Version:** 1 | **Date:** 2026-01-07 | **Author:** jochim
-**Tags:** None
-
----
-
-## Prompt Content
-```text
 **Context:**
 You are taking ownership of an **existing codebase** (The "Legacy Core"). Your objective is to perform a deep-dive analysis, reverse-engineer its logic, document its current state, and execute a modernization strategy (refactor, rewrite, or strictly document). You will treat this process with the rigor of a forensic investigation combined with high-end product engineering.
 
@@ -118,14 +105,3 @@ Use **markdown** with the following structured layout:
 
 ```mermaid
 %% Diagram source code
-```
-
-## Variables
-| Name | Description |
-|------|-------------|
-| PASTE CODE HERE OR LINK REPO |  |
-| GOAL |  |
-
-## Metadata
-*   **Collection:** Vibe coding
-*   **Source:** None

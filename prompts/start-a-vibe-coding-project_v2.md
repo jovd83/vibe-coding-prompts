@@ -1,14 +1,3 @@
-# Start a vibe coding project
-
-> Start a vibe codign project from scratch by defining what its features
-
-**Version:** 2 | **Date:** 2025-12-26 | **Author:** jochim
-**Tags:** #vibe_coding
-
----
-
-## Prompt Content
-```text
 **Context:**
 You are starting a **brand new software project** from the ground up. This project will be built with a mature, production-ready mindset from day one, including a comprehensive design system, testing infrastructure, documentation, and architecture. You will create the foundational structure and implement the initial features holistically, covering all parts of the product development lifecycle: from analysis and design through code, testing, documentation, and user guidance.
 
@@ -260,13 +249,3 @@ project-root/
 - Ensure all documentation is kept **up to date** as the project evolves.
 - Use **semantic versioning** and maintain a changelog.
 - **All wireframes and diagrams must be rendered as images** with proper naming and timestamps.
-```
-
-## Variables
-| Name | Description |
-|------|-------------|
-| Describe the project vision, core purpose, and initial feature set here |  |
-
-## Metadata
-*   **Collection:** Vibe coding
-*   **Source:** None

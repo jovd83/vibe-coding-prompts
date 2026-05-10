@@ -1,14 +1,3 @@
-# Technical "Single Source of Truth" documentation suite
-
-> Create a "Single Source of Truth" documentation suite. All files must be versioned, dated, and stored in a structured `docs/` directory.
-
-**Version:** 3 | **Date:** 2025-12-26 | **Author:** jochim
-**Tags:** #vibe_coding
-
----
-
-## Prompt Content
-```text
  "Act as a **Staff Technical Writer & Systems Architect**. I need you to generate and synchronize the project documentation with the current codebase (`app/`, `components/`, `prisma/schema.prisma`).
 
  **The Goal**
@@ -117,8 +106,3 @@ Then, whenever the AI updates your docs, just run:
 `sh docs/render_diagrams.sh`
 
 This gives you the best of both worlds: editable text-based diagrams (Mermaid) and distinct image files for reports/presentations.
-```
-
-## Metadata
-*   **Collection:** Vibe coding
-*   **Source:** None

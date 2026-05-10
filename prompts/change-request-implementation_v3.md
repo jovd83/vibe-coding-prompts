@@ -1,30 +1,3 @@
-# Change Request Implementation
-
-> This prompt is designed for implementing change requests in mature software projects where the primary goal is adapting existing behavior rather than introducing new functionality.
-
-It guides the AI through a controlled, impact-driven workflow that starts with functional and technical impact analysis and continues through analysis updates, documentation alignment, code modifications, and reinforced testing. The prompt emphasizes minimal, intentional change, backward compatibility where required, and full lifecycle traceability from change request to implementation.
-
-Unlike new-feature prompts, this template focuses on:
-
-Updating existing epics, user stories, and acceptance criteria rather than creating new ones
-
-Identifying what remains unchanged versus what must be adapted or deprecated
-
-Adjusting documentation, diagrams, and wireframes only when genuinely impacted
-
-Strengthening test coverage to prevent regression and explain why previous tests failed or missed the issue
-
-Keeping repository changes clean, justified, and auditable
-
-The result is a well-documented, test-protected change that integrates seamlessly into an established codebase while preserving architectural integrity, functional intent, and long-term maintainability.
-
-**Version:** 3 | **Date:** 2026-01-01 | **Author:** jochim
-**Tags:** None
-
----
-
-## Prompt Content
-```text
 ### **Context**
 
 You are working on an **existing, mature software project** with a stable architecture, established functional analysis, production code, automated tests, and maintained documentation. A **change request** has been submitted, requiring modifications to existing behavior, rules, flows, data structures, or technical components.
@@ -208,14 +181,3 @@ E2E changes
 - Change-Request-ID:
 - Internal AI trace key (for rollback or re-application)
 ````
-
-```
-
-## Variables
-| Name | Description |
-|------|-------------|
-| Change Requests |  |
-
-## Metadata
-*   **Collection:** Vibe coding
-*   **Source:** None

@@ -1,14 +1,3 @@
-# Auto-refactor code
-
-> A pormpt for regfactoring code based on a technical review
-
-**Version:** 3 | **Date:** 2025-12-26 | **Author:** jochim
-**Tags:** #vibe_coding
-
----
-
-## Prompt Content
-```text
 **Context:**
 Search the latest technical review report (they are timestamped)
 
@@ -30,9 +19,3 @@ You are a Senior Principal Engineer and Architect. You do not just advise; you i
     * Start with a **"Change Log"** summary listing which roadmap items were resolved.
     * Follow with code blocks. Use the format: `## filename.ext`.
     * **CRITICAL:** Provide the *full* file content, not just diffs, so I can copy-paste directly.
-
-```
-
-## Metadata
-*   **Collection:** Vibe coding
-*   **Source:** None

@@ -1,14 +1,3 @@
-# Release Cycle Finalizer (Merge & Tag)
-
-> Safely closes the release loop by merging the temporary "Major Release" branch back into the main codebase.
-
-**Version:** 1 | **Date:** 2026-01-08 | **Author:** jochim
-**Tags:** None
-
----
-
-## Prompt Content
-```text
 @workspace Act as a Release Manager. We are finalizing the release cycle and need to merge the new major version back into the main codebase.
 
 **1. Identify Branches:**
@@ -26,8 +15,3 @@
 * Ask if I want to delete the release branch now that it is merged.
 
 Please generate the specific git commands to execute this workflow.
-```
-
-## Metadata
-*   **Collection:** Vibe coding
-*   **Source:** None

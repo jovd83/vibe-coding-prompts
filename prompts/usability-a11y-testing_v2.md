@@ -1,14 +1,3 @@
-# Usability & a11y testing
-
-> No description provided.
-
-**Version:** 2 | **Date:** 2025-12-23 | **Author:** jochim
-**Tags:** None
-
----
-
-## Prompt Content
-```text
 > "Act as a **Lead Accessibility (A11y) & QA Engineer**. I need you to perform a comprehensive audit of my Next.js application using **Lighthouse (via npx)**.
 >
 > **The Goal**
@@ -56,9 +45,3 @@
 >   * **Static Analysis Findings:** List any "code smells" you found in Phase 3 (e.g., "Found non-interactive div with click handler in `Sidebar.tsx`").
 >
 > **Start by identifying the routes you plan to test and checking if the output folder exists.**"
-
-```
-
-## Metadata
-*   **Collection:** Vibe coding
-*   **Source:** None

@@ -1,14 +1,3 @@
-# Update functional analysis
-
-> No description provided.
-
-**Version:** 2 | **Date:** 2025-12-23 | **Author:** jochim
-**Tags:** None
-
----
-
-## Prompt Content
-```text
 > "Act as a **Senior Product Owner & Business Analyst**. I need you to synchronize my `functional analysis` folder with the current state of my codebase (`app/`, `components/`, `prisma/schema.prisma`).
 >
 > **The Goal**
@@ -97,8 +86,3 @@
 
 > **Start by scanning the `app` folder to identify the current features.**"
 > ```
-```
-
-## Metadata
-*   **Collection:** Vibe coding
-*   **Source:** None
