@@ -1,5 +1,8 @@
 # Vibe Coding Prompts Collection
 
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/jovd83/vibe-coding-prompts)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/jovd83)
+
 > A curated collection of agentic AI prompts for "Vibe Coding" workflows.
 
 This repository shares the reusable **Vibe Coding Prompts** that were originally used to build [Prompthive](https://github.com/jovd83/prompthive). 
@@ -67,5 +70,3 @@ You can also import the full prompt collection directly into [Prompthive](https:
 
 These prompts were refined during the development of **Prompthive**. Check it out here:
 👉 **[https://github.com/jovd83/prompthive](https://github.com/jovd83/prompthive)**
-
-[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=flat&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/jovd83)

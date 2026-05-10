@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "exportedAt": "2026-01-09T13:55:32.651Z",
+  "exportedAt": "2026-05-10T06:10:08.414Z",
   "prompts": [
     {
       "id": "cmjiat2o6008fvwwcjfdho7di",
@@ -10,16 +10,29 @@
         "vibe_coding"
       ],
       "collections": [
-        "Vibe coding"
+        "♻️ Review & Refactoring"
       ],
       "collectionIds": [
-        "cmjiat2cr008dvwwciollsthp"
+        "cmkaudv7k001kaxmcqr75lgd8"
       ],
-      "viewCount": 2,
-      "copyCount": 1,
+      "viewCount": 9,
+      "copyCount": 12,
       "createdAt": "2025-12-23T08:03:38.311Z",
-      "updatedAt": "2026-01-01T11:29:08.125Z",
+      "updatedAt": "2026-05-02T06:01:54.194Z",
       "versions": [
+        {
+          "versionNumber": 4,
+          "content": "Role: Act as a Senior Principal Engineer specializing in System Architecture, Security, and Refactoring. Your goal is a ruthless, high-fidelity technical audit of this codebase to move it from \"vibe-coded\" prototype to production-grade engineering.\r\n\r\nPhase 1: Autonomous Environment Discovery\r\nBefore applying the rubric, scan the root directory and configuration files (e.g., package.json, go.mod, requirements.txt, pyproject.toml, Cargo.toml, Dockerfile) to:\r\n\r\nIdentify the Stack: Determine primary languages, frameworks, and databases.\r\n\r\nMap the Architecture: Identify entry points (APIs, Cron jobs), Data Models (ORMs), and Routing logic.\r\n\r\nPrioritize High-Risk Areas: Locate \"Hot Files\" (files changed often or containing core business logic) to focus the audit.\r\n\r\nPhase 2: The \"Principal Engineer\" Rubric\r\nScan the codebase for the following Code Smells across four dimensions:\r\n\r\nI. Architectural & Boundary Smells:\r\n\r\nBoundary Violations: Logic that belongs in the data layer existing in the UI/client layer (e.g., raw DB queries in a component).\r\n\r\nLeaky Abstractions: Low-level implementation details (manual string parsing, raw SQL, direct fetch calls) bleeding into high-level orchestration layers.\r\n\r\nGod Objects/Components: Any file/class >300 lines mixing business logic, state, and presentation.\r\n\r\nII. Data, Security & Type Safety:\r\n\r\nValidation Gaps: Missing/inconsistent input validation at \"Trust Boundaries\" (API entry points).\r\n\r\nType Safety Erosion: Use of \"escape hatches\" (any, interface{}, dynamic, as any) to bypass the compiler.\r\n\r\nPerformance Bottlenecks: N+1 query patterns (DB calls inside loops) or heavy unnecessary dependencies.\r\n\r\nIII. Reliability & Observability:\r\n\r\nThe \"Silent Failure\" Trap: Empty catch blocks, suppressed errors, or generic \"Error occurred\" messages without structured logging.\r\n\r\nGhost State: UI state that is out of sync with the \"Source of Truth\" (DB/URL/Global Store).\r\n\r\nUntestable Logic: Functions tightly coupled to globals, time, or external APIs that cannot be mocked.\r\n\r\nIV. Code Hygiene & Sustainability:\r\n\r\nMagic Values: Hardcoded strings (roles, paths, config) instead of Enums or Config files.\r\n\r\nSide-Effect Soup: Functions lacking a \"Single Responsibility\" (e.g., a function that validates, saves, emails, and clears cache).\r\n\r\nPackage Bloat: Large libraries used for tasks easily handled by native language features.\r\n\r\nPhase 3: The Deliverable (Markdown Report)\r\nConstruct a report titled \"Refactoring Roadmap: [Detected Project Name]\".\r\n\r\nExecutive Summary: Provide a Maintainability Score (0-100) and a 2-sentence \"State of the Union.\"\r\n\r\nThe Audit Table:\r\n| Location | Severity | Smell Detected | The Risk | The Fix |\r\n| :--- | :--- | :--- | :--- | :--- |\r\n| path/to/file:line | Critical/High/Med | Name of Smell | Why this kills the project | Actionable instruction |\r\n\r\nPhase 4: Execution & Persistence (Mandatory)\r\nAnalyze the codebase based on the discovery in Phase 1.\r\n\r\nGenerate the report in memory.\r\n\r\nCheck for a folder named Technical_Reviews. If it doesn't exist, create it.\r\n\r\nSave the report as Audit_YYYY-MM-DD_HH-mm.md using the current timestamp.\r\n\r\nStart by announcing the detected stack and your prioritized plan of attack.",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[]",
+          "model": null,
+          "changelog": "generalisation of the prompt",
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-02-17T08:54:22.999Z"
+        },
         {
           "versionNumber": 3,
           "content": "> \"Act as a **Senior Principal Engineer** specializing in Next.js Architecture and Refactoring. I need a ruthless technical audit of a \"vibe coded\" (AI-generated) application.\r\n>\r\n> **1. The Context**\r\n> * **Stack:** Next.js 14+ (App Router), Prisma (SQLite), Zod, Server Actions, NextAuth.\r\n> * **Origin:** Rapidly prototyped. The code works, but likely suffers from \"Spaghetti Architecture,\" \"God Components,\" and lack of separation of concerns.\r\n> * **Schema:** Complex `schema.prisma` with recursive self-relations (`Collection`) and JSON stored as Strings.\r\n>\r\n> **2. The Rubric (Your Inspection Criteria)**\r\n> You will scan the `app/`, `components/`, and `actions/` directories. You are looking for these specific **Code Smells**:\r\n>\r\n> * **Architectural Smells:**\r\n>     * **The \"Use Client\" Trap:** Identify files marked `'use client'` at the top that contain sensitive logic, heavy libraries, or secrets. (Fix: Push the boundary down).\r\n>     * **Leaky Abstractions:** Server Actions imported directly into deeply nested UI components instead of passing data via props or context.\r\n>     * **God Components:** UI components >300 lines mixing business logic, data fetching, and presentation.\r\n>\r\n> * **Data & Security Smells:**\r\n>     * **Validation Location:** Is Zod used *inside* the Server Action (good) or only in the UI (bad/insecure)?\r\n>     * **The \"Any\" Virus:** Explicitly search for `any` types used to bypass Prisma's complex recursive types.\r\n>     * **Schema Hacks:** Flag where `JSON.parse()` is used on the `variableDefinitions` string without validation.\r\n>     * **N+1 Queries:** Loops calling `prisma.findUnique` inside `.map()`.\r\n>\r\n> * **Code Hygiene:**\r\n>     * **Magic Strings:** Hardcoded roles (\"ADMIN\"), paths, or config values.\r\n>     * **Action Spaghetti:** Server Actions doing too much (Auth + DB + Email + Stripe). Suggest the \"Service Layer\" pattern.\r\n>\r\n> **3. The Deliverable (Markdown Report)**\r\n> Construct a report titled **\"Refactoring Roadmap\"**. It must contain a table with these columns:\r\n> * **File/Location**: (Link to file)\r\n> * **Severity**: (Critical/High/Medium)\r\n> * **Smell Detected**: (e.g., \"Mixed Concerns\", \"Ghost Logic\")\r\n> * **Why it's bad**: (Brief architectural explanation)\r\n> * **The Fix**: (Specific instruction, e.g., \"Extract logic to `src/hooks/usePrompt.ts`\")\r\n>\r\n> **4. Execution & File Operations (Mandatory)**\r\n> * **Step 1:** Analyze the codebase against the Rubric above.\r\n> * **Step 2:** Generate the Markdown report in memory.\r\n> * **Step 3:** Check if a folder named `Technical review` exists. If not, create it.\r\n> * **Step 4:** Save the report to that folder.\r\n>     * **Filename Format:** `Technical_Review_YYYY-MM-DD_HH-mm.md` (Use current timestamp).\r\n>\r\n> **Start by scanning `schema.prisma` and the `app` directory, then announce your plan.**\"\r\n\r\n***\r\n\r\n### Why this version is better\r\n\r\n\r\n\r\n1.  **Integrated \"Smell\" Advice:** I moved your advice about \"The 'Use Client' Trap\" and \"The 'Any' Virus\" *inside* the instruction block. Now the AI knows these are strictly forbidden, rather than just \"things to watch for.\"\r\n2.  **Explicit Severity Levels:** I added a \"Severity\" column to the output table. This helps you prioritize. \"Vibe code\" often has 100 small issues and 2 critical ones; this forces the AI to distinguish them.\r\n3.  **Strict File Logic:** The instructions for file creation are now a numbered execution step (`Step 3` & `Step 4`). This triggers the Agent's file-system tools (like `fs.mkdir` and `fs.writeFile`) more reliably than a footer note.\r\n4.  **Defined Scope:** I explicitly told it to look at `app/`, `components/`, and `actions/`. Without this, some agents only look at open files.\r\n\r\n### One final tip for \"Vibe Code\" reviews\r\nSince \"Vibe Coding\" often means the code is generated by an LLM, it often lacks comments. You might want to ask the AI to **add a column to the report** regarding \"Documentation Debt\" if the complex recursive logic in your `Collection` model is unexplained in the code.",
@@ -63,22 +76,36 @@
     },
     {
       "id": "cmjiat3h3008kvwwcquc1zfyy",
-      "title": "Unit testing",
+      "title": "Run, examine & improve existing unit tests",
       "description": "examine existing unit tests, add missing, execute and calculate coverage",
       "tags": [
-        "vibe_coding"
+        "vibe_coding",
+        "unit_tests"
       ],
       "collections": [
-        "Vibe coding"
+        "🐞 QA & Testing"
       ],
       "collectionIds": [
-        "cmjiat2cr008dvwwciollsthp"
+        "cmkaudpuj001iaxmclto48cmc"
       ],
-      "viewCount": 5,
-      "copyCount": 4,
+      "viewCount": 14,
+      "copyCount": 16,
       "createdAt": "2025-12-23T08:03:39.351Z",
-      "updatedAt": "2025-12-31T09:16:34.378Z",
+      "updatedAt": "2026-05-03T09:11:19.737Z",
       "versions": [
+        {
+          "versionNumber": 5,
+          "content": "> \"Act as a **Lead SDET** obsessed with Quality Assurance. I need you to execute a \"Fix-and-Verify\" cycle to boost my project's test coverage to at least **80%**.\r\n>\r\n> **The Context**\r\n> * **Framework:** Vitest (Tests are co-located, e.g., `lib/utils.ts` -> `lib/utils.test.ts`).\r\n> * **Goal:** Achieve >80% Code Coverage.\r\n> * **Constraint:** You must **re-run** the tests after generating new ones to confirm they pass.\r\n>\r\n> **Phase 1: Baseline Audit**\r\n> 1.  **Dependency Check:** Check `package.json` for `@vitest/coverage-v8`. If missing, install it (or tell me the command).\r\n> 2.  **Initial Run:** Execute `npx vitest run --coverage`.\r\n> 3.  **Analyze:** Identify files with logic (excluding UI components if using RTL is too heavy) that have **< 80% coverage**.\r\n>\r\n> **Phase 2: Test Generation (The Fix)**\r\n> *For the top 3 files with low/zero coverage:*\r\n> 1.  **Create/Update** the `*.test.ts` file co-located with the source.\r\n> 2.  **Requirements:**\r\n>     * **Mocking:** You must mock `prisma` or external API calls. Do not hit the real DB.\r\n>     * **Unhappy Paths:** Include at least one test case for invalid inputs or errors.\r\n>     * **Vibe Check:** If the logic is untestable (e.g., massive functions), refactor the source code slightly to make it testable, then write the test.\r\n>\r\n> **Phase 3: Verification (The Loop)**\r\n> 1.  **Re-Execute:** Run `npx vitest run --coverage` again.\r\n> 2.  **Compare:** Compare the new coverage % against the Phase 1 baseline.\r\n>\r\n> **Phase 4: Final Reporting**\r\n> Generate a Markdown report file in `Technical review/` named `Test_Coverage_Report_[Timestamp].md`.\r\n>\r\n> The report must contain:\r\n> 1.  **Executive Summary:** Final Coverage % (and the delta/improvement from Phase 1).\r\n> 2.  **Test Execution Matrix:**\r\n>     | Test File | Status (✅/❌) | Coverage % |\r\n>     | :--- | :--- | :--- |\r\n>     | `lib/utils.test.ts` | ✅ PASS | 92% |\r\n> 3.  **Remaining Gaps:** Which files are still below 80% and why?\r\n>\r\n> **Start by running the initial coverage check.**\"\r\n",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[]",
+          "model": null,
+          "changelog": "rename",
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-01-11T09:57:46.428Z"
+        },
         {
           "versionNumber": 4,
           "content": "> \"Act as a **Lead SDET** obsessed with Quality Assurance. I need you to execute a \"Fix-and-Verify\" cycle to boost my project's test coverage to at least **80%**.\r\n>\r\n> **The Context**\r\n> * **Framework:** Vitest (Tests are co-located, e.g., `lib/utils.ts` -> `lib/utils.test.ts`).\r\n> * **Goal:** Achieve >80% Code Coverage.\r\n> * **Constraint:** You must **re-run** the tests after generating new ones to confirm they pass.\r\n>\r\n> **Phase 1: Baseline Audit**\r\n> 1.  **Dependency Check:** Check `package.json` for `@vitest/coverage-v8`. If missing, install it (or tell me the command).\r\n> 2.  **Initial Run:** Execute `npx vitest run --coverage`.\r\n> 3.  **Analyze:** Identify files with logic (excluding UI components if using RTL is too heavy) that have **< 80% coverage**.\r\n>\r\n> **Phase 2: Test Generation (The Fix)**\r\n> *For the top 3 files with low/zero coverage:*\r\n> 1.  **Create/Update** the `*.test.ts` file co-located with the source.\r\n> 2.  **Requirements:**\r\n>     * **Mocking:** You must mock `prisma` or external API calls. Do not hit the real DB.\r\n>     * **Unhappy Paths:** Include at least one test case for invalid inputs or errors.\r\n>     * **Vibe Check:** If the logic is untestable (e.g., massive functions), refactor the source code slightly to make it testable, then write the test.\r\n>\r\n> **Phase 3: Verification (The Loop)**\r\n> 1.  **Re-Execute:** Run `npx vitest run --coverage` again.\r\n> 2.  **Compare:** Compare the new coverage % against the Phase 1 baseline.\r\n>\r\n> **Phase 4: Final Reporting**\r\n> Generate a Markdown report file in `Technical review/` named `Test_Coverage_Report_[Timestamp].md`.\r\n>\r\n> The report must contain:\r\n> 1.  **Executive Summary:** Final Coverage % (and the delta/improvement from Phase 1).\r\n> 2.  **Test Execution Matrix:**\r\n>     | Test File | Status (✅/❌) | Coverage % |\r\n>     | :--- | :--- | :--- |\r\n>     | `lib/utils.test.ts` | ✅ PASS | 92% |\r\n> 3.  **Remaining Gaps:** Which files are still below 80% and why?\r\n>\r\n> **Start by running the initial coverage check.**\"\r\n",
@@ -141,15 +168,15 @@
         "vibe_coding"
       ],
       "collections": [
-        "Vibe coding"
+        "📄 Documentation"
       ],
       "collectionIds": [
-        "cmjiat2cr008dvwwciollsthp"
+        "cmkaue5iv001maxmco6zyhb5i"
       ],
-      "viewCount": 0,
-      "copyCount": 2,
+      "viewCount": 1,
+      "copyCount": 3,
       "createdAt": "2025-12-23T08:03:40.967Z",
-      "updatedAt": "2025-12-23T09:16:53.301Z",
+      "updatedAt": "2026-02-16T07:21:02.466Z",
       "versions": [
         {
           "versionNumber": 2,
@@ -187,15 +214,15 @@
         "vibe_coding"
       ],
       "collections": [
-        "Vibe coding"
+        "🐞 QA & Testing"
       ],
       "collectionIds": [
-        "cmjiat2cr008dvwwciollsthp"
+        "cmkaudpuj001iaxmclto48cmc"
       ],
-      "viewCount": 0,
-      "copyCount": 0,
+      "viewCount": 2,
+      "copyCount": 1,
       "createdAt": "2025-12-23T08:03:42.182Z",
-      "updatedAt": "2025-12-23T08:03:42.665Z",
+      "updatedAt": "2026-02-25T13:17:05.707Z",
       "versions": [
         {
           "versionNumber": 2,
@@ -233,15 +260,15 @@
         "vibe_coding"
       ],
       "collections": [
-        "Vibe coding"
+        "📄 Documentation"
       ],
       "collectionIds": [
-        "cmjiat2cr008dvwwciollsthp"
+        "cmkaue5iv001maxmco6zyhb5i"
       ],
-      "viewCount": 4,
+      "viewCount": 6,
       "copyCount": 0,
       "createdAt": "2025-12-23T08:03:43.497Z",
-      "updatedAt": "2025-12-26T18:41:05.619Z",
+      "updatedAt": "2026-01-13T16:35:13.136Z",
       "versions": [
         {
           "versionNumber": 3,
@@ -292,15 +319,15 @@
         "vibe_coding"
       ],
       "collections": [
-        "Vibe coding"
+        "♻️ Review & Refactoring"
       ],
       "collectionIds": [
-        "cmjiat2cr008dvwwciollsthp"
+        "cmkaudv7k001kaxmcqr75lgd8"
       ],
-      "viewCount": 2,
-      "copyCount": 1,
+      "viewCount": 6,
+      "copyCount": 6,
       "createdAt": "2025-12-23T08:03:46.826Z",
-      "updatedAt": "2026-01-01T11:28:11.877Z",
+      "updatedAt": "2026-05-02T06:17:23.444Z",
       "versions": [
         {
           "versionNumber": 3,
@@ -351,15 +378,15 @@
         "vibe_coding"
       ],
       "collections": [
-        "Vibe coding"
+        "💻 Development & Changes"
       ],
       "collectionIds": [
-        "cmjiat2cr008dvwwciollsthp"
+        "cmkaudk4k001gaxmcml1lunvd"
       ],
-      "viewCount": 17,
-      "copyCount": 23,
+      "viewCount": 47,
+      "copyCount": 65,
       "createdAt": "2025-12-23T08:03:48.098Z",
-      "updatedAt": "2026-01-09T12:21:19.255Z",
+      "updatedAt": "2026-04-23T12:56:47.027Z",
       "versions": [
         {
           "versionNumber": 5,
@@ -430,22 +457,51 @@
     },
     {
       "id": "cmjiatb16009pvwwciyschoe9",
-      "title": "Selfhealing frontend-tests",
-      "description": "",
+      "title": "Run & heal existing frontend-tests",
+      "description": "Exceute existing frontend tests & fix problems",
       "tags": [
-        "vibe_coding"
+        "vibe_coding",
+        "frontend_testing",
+        "ui_testing",
+        "test_automation"
       ],
       "collections": [
-        "Vibe coding"
+        "🐞 QA & Testing"
       ],
       "collectionIds": [
-        "cmjiat2cr008dvwwciollsthp"
+        "cmkaudpuj001iaxmclto48cmc"
       ],
-      "viewCount": 1,
-      "copyCount": 2,
+      "viewCount": 14,
+      "copyCount": 10,
       "createdAt": "2025-12-23T08:03:49.146Z",
-      "updatedAt": "2025-12-27T19:18:56.200Z",
+      "updatedAt": "2026-05-09T18:21:31.398Z",
       "versions": [
+        {
+          "versionNumber": 4,
+          "content": "# Role\r\nYou are an Autonomous SDET Agent. Your mission is to scan, diagnose, and repair a failing Playwright test suite without manual intervention.\r\n\r\n# Operational Environment\r\n- **Root Directory:** Current Project Workspace\r\n- **Test Report Path:** `./playwright-report/results.json` (or the latest .json file in test-results)\r\n- **Source Code:** `./tests/`\r\n\r\n# Execution Workflow (Iterative)\r\n\r\n## Phase 1: Discovery & Analysis\r\n1. **Locate Failures:** Search the latest Playwright JSON report. Identify all tests with `status: \"failed\"`.\r\n2. **Context Gathering:** For each failure, read:\r\n    - The `errorMessage` and `stackTrace`.\r\n    - The failing test file code.\r\n    - The associated `trace` or HTML snapshot if available in the attachments.\r\n\r\n## Phase 2: Iterative Healing Loop\r\nFor **EVERY** failure identified, perform the following logic:\r\n1. **Diagnosis:** Determine if the fix requires a selector update, a timeout adjustment, or a logic change.\r\n2. **File Modification:** - Use your file-writing capabilities to update the test file or Page Object file.\r\n    - **Rule:** Prioritize Playwright \"Web-First\" Locators (e.g., `getByRole`, `getByTestId`) over brittle CSS/XPath.\r\n3. **Internal Verification:** If the environment allows, suggest the command to re-run only that specific failed test to verify the fix.\r\n\r\n## Phase 3: Final Reporting\r\nAfter iterating through all failures, generate a **Summary Executive Report** in the following format:\r\n\r\n| Test Case Name | Error Type | Healing Action Taken | Confidence (0-100) |\r\n| :--- | :--- | :--- | :--- |\r\n| [Test Name] | [e.g. Timeout] | [e.g. Added waitForSelector] | [Score] |\r\n\r\n# Constraints & Rules\r\n- **No Hallucinations:** If a fix is ambiguous, mark it as \"Manual Review Required\" in the final report.\r\n- **Minimal Surface Change:** Do not refactor the entire test; only fix the line(s) causing the failure.\r\n- **Imports:** If adding a new utility, ensure the necessary Playwright imports are present.\r\n\r\n# Initial Action\r\nStart by listing all failing tests found in the latest report and describe your plan for the first fix.",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[]",
+          "model": null,
+          "changelog": "added tags",
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-02-25T11:17:56.450Z"
+        },
+        {
+          "versionNumber": 3,
+          "content": "# Role\r\nYou are an Autonomous SDET Agent. Your mission is to scan, diagnose, and repair a failing Playwright test suite without manual intervention.\r\n\r\n# Operational Environment\r\n- **Root Directory:** Current Project Workspace\r\n- **Test Report Path:** `./playwright-report/results.json` (or the latest .json file in test-results)\r\n- **Source Code:** `./tests/`\r\n\r\n# Execution Workflow (Iterative)\r\n\r\n## Phase 1: Discovery & Analysis\r\n1. **Locate Failures:** Search the latest Playwright JSON report. Identify all tests with `status: \"failed\"`.\r\n2. **Context Gathering:** For each failure, read:\r\n    - The `errorMessage` and `stackTrace`.\r\n    - The failing test file code.\r\n    - The associated `trace` or HTML snapshot if available in the attachments.\r\n\r\n## Phase 2: Iterative Healing Loop\r\nFor **EVERY** failure identified, perform the following logic:\r\n1. **Diagnosis:** Determine if the fix requires a selector update, a timeout adjustment, or a logic change.\r\n2. **File Modification:** - Use your file-writing capabilities to update the test file or Page Object file.\r\n    - **Rule:** Prioritize Playwright \"Web-First\" Locators (e.g., `getByRole`, `getByTestId`) over brittle CSS/XPath.\r\n3. **Internal Verification:** If the environment allows, suggest the command to re-run only that specific failed test to verify the fix.\r\n\r\n## Phase 3: Final Reporting\r\nAfter iterating through all failures, generate a **Summary Executive Report** in the following format:\r\n\r\n| Test Case Name | Error Type | Healing Action Taken | Confidence (0-100) |\r\n| :--- | :--- | :--- | :--- |\r\n| [Test Name] | [e.g. Timeout] | [e.g. Added waitForSelector] | [Score] |\r\n\r\n# Constraints & Rules\r\n- **No Hallucinations:** If a fix is ambiguous, mark it as \"Manual Review Required\" in the final report.\r\n- **Minimal Surface Change:** Do not refactor the entire test; only fix the line(s) causing the failure.\r\n- **Imports:** If adding a new utility, ensure the necessary Playwright imports are present.\r\n\r\n# Initial Action\r\nStart by listing all failing tests found in the latest report and describe your plan for the first fix.",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[]",
+          "model": null,
+          "changelog": "added description",
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-02-25T10:55:10.930Z"
+        },
         {
           "versionNumber": 2,
           "content": "# Role\r\nYou are an Autonomous SDET Agent. Your mission is to scan, diagnose, and repair a failing Playwright test suite without manual intervention.\r\n\r\n# Operational Environment\r\n- **Root Directory:** Current Project Workspace\r\n- **Test Report Path:** `./playwright-report/results.json` (or the latest .json file in test-results)\r\n- **Source Code:** `./tests/`\r\n\r\n# Execution Workflow (Iterative)\r\n\r\n## Phase 1: Discovery & Analysis\r\n1. **Locate Failures:** Search the latest Playwright JSON report. Identify all tests with `status: \"failed\"`.\r\n2. **Context Gathering:** For each failure, read:\r\n    - The `errorMessage` and `stackTrace`.\r\n    - The failing test file code.\r\n    - The associated `trace` or HTML snapshot if available in the attachments.\r\n\r\n## Phase 2: Iterative Healing Loop\r\nFor **EVERY** failure identified, perform the following logic:\r\n1. **Diagnosis:** Determine if the fix requires a selector update, a timeout adjustment, or a logic change.\r\n2. **File Modification:** - Use your file-writing capabilities to update the test file or Page Object file.\r\n    - **Rule:** Prioritize Playwright \"Web-First\" Locators (e.g., `getByRole`, `getByTestId`) over brittle CSS/XPath.\r\n3. **Internal Verification:** If the environment allows, suggest the command to re-run only that specific failed test to verify the fix.\r\n\r\n## Phase 3: Final Reporting\r\nAfter iterating through all failures, generate a **Summary Executive Report** in the following format:\r\n\r\n| Test Case Name | Error Type | Healing Action Taken | Confidence (0-100) |\r\n| :--- | :--- | :--- | :--- |\r\n| [Test Name] | [e.g. Timeout] | [e.g. Added waitForSelector] | [Score] |\r\n\r\n# Constraints & Rules\r\n- **No Hallucinations:** If a fix is ambiguous, mark it as \"Manual Review Required\" in the final report.\r\n- **Minimal Surface Change:** Do not refactor the entire test; only fix the line(s) causing the failure.\r\n- **Imports:** If adding a new utility, ensure the necessary Playwright imports are present.\r\n\r\n# Initial Action\r\nStart by listing all failing tests found in the latest report and describe your plan for the first fix.",
@@ -482,16 +538,29 @@
         "vibe_coding"
       ],
       "collections": [
-        "Vibe coding"
+        "💻 Development & Changes"
       ],
       "collectionIds": [
-        "cmjiat2cr008dvwwciollsthp"
+        "cmkaudk4k001gaxmcml1lunvd"
       ],
-      "viewCount": 6,
-      "copyCount": 15,
+      "viewCount": 45,
+      "copyCount": 82,
       "createdAt": "2025-12-23T08:03:56.024Z",
-      "updatedAt": "2026-01-09T13:48:28.763Z",
+      "updatedAt": "2026-03-21T09:47:12.771Z",
       "versions": [
+        {
+          "versionNumber": 4,
+          "content": "**Context:**\r\nYou are working on an established software project called **Vibecoded**, where a bug has been identified by a user, tester, or stakeholder. Your task is to triage, reproduce, confirm, and fix this bug with complete traceability — covering test gap analysis, updates to stories or documentation, code fixes, and verification. This process should be used not just to solve the bug but to **understand why it wasn’t caught** and ensure similar issues do not arise again. All updates must align with Vibecoded’s existing development standards and be reflected in the proper project folders.\r\n\r\nProject structure for reference:\r\n\r\n* **Technical diagrams & datamodels**: `docs/diagrams/`\r\n* **Epics & user stories**: `docs/functional analysis/`\r\n* **Technical documentation**: `docs/technical/`\r\n* **Wireframes**: `docs/wireframes/`\r\n* **Playwright tests**: `frontend-tests/`\r\n* **Unit tests**: alongside relevant components/classes\r\n* **Manual/help pages**: maintained with the app\r\n* **README.md**: root-level documentation\r\n\r\nAll changes should respect this folder structure and maintain minimum 80% test coverage for altered code.\r\n\r\n**Role:**\r\nYou are a seasoned software engineer, QA lead, technical writer, and product analyst with over 20 years of experience maintaining critical production systems. You specialize in performing in-depth bug triage, root cause analysis, test design, and sustainable fixes. You ensure bugs are resolved thoroughly, prevent regressions, and continuously improve testing, documentation, and system understanding.\r\n\r\n**Action:**\r\nGiven a user-submitted bug report or description, perform the following steps:\r\n\r\n1. **Bug Intake & Analysis**\r\n   a. Parse the user’s bug description.\r\n   b. Identify where this issue should have been accounted for in the existing *epics, user stories, or acceptance criteria* (`docs/functional analysis/`).\r\n   c. Determine and explain why the existing *unit tests* or *Playwright tests* did not catch this bug. Be honest and specific.\r\n\r\n2. **Documentation & Story Updates**\r\n   a. Update or add to *epics/user stories* to cover the scenario revealed by this bug.\r\n   b. Clarify or add acceptance criteria that reflect what failed.\r\n   c. If needed, update or add *wireframes* in `docs/wireframes/` to reflect UI inconsistencies.\r\n\r\n3. **Confirmation Test Creation**\r\n   a. Write a *confirmation test* (unit or Playwright) that reproduces the bug.\r\n   b. Run the test and confirm that it **fails**.\r\n   c. Briefly summarize the failed test outcome and error output.\r\n\r\n4. **Bug Fix Implementation**\r\n   a. Identify and explain the root cause in the code.\r\n   b. Write and apply the code fix.\r\n   c. Run the previously failing test — it must now **pass**.\r\n   d. Confirm and report test success.\r\n\r\n5. **Full Test Coverage**\r\n   a. Write or update additional *unit tests* or *Playwright tests* to ensure similar bugs won’t recur.\r\n   b. Ensure all altered areas remain at ≥80% code coverage.\r\n   c. Self-heal any broken tests caused by this fix.\r\n   d. perform regression testing of related and possibly affected area's\r\n   e. Report test coverage delta (before/after).\r\n\r\n6. **Documentation & Manual Updates**\r\n   a. If needed, update `docs/technical/` with explanations of the fix, component behavior, or system interaction changes.\r\n   b. Update `docs/diagrams/` if architecture, data flow, or state transitions changed.\r\n   c. Update relevant *manual/help pages* to clarify usage or resolve previous confusion.\r\n\r\n7. **Repository Maintenance**\r\n   a. Update the `README.md` if anything changed about setup, usage, or dev tools.\r\n   b. Note if no changes were needed and why.\r\n   c. Add changes to changelog\r\n\r\n8. **Bug Fix Report**\r\n   a. Write a clear, structured report that summarizes:\r\n\r\n   * Bug origin and impact\r\n   * Root cause\r\n   * Why it wasn’t caught earlier\r\n   * What was changed or added\r\n   * What has been improved to prevent recurrence\r\n     b. Use a tone appropriate for internal engineering retrospectives.\r\n\r\n**Format:**\r\nRespond in **markdown** using the following structure:\r\n\r\n````markdown\r\n### 🐞 Bug: [Brief Title]\r\n\r\n#### 🧾 User Description\r\n> \"[User-submitted description]\"\r\n\r\n---\r\n\r\n#### 📋 Epic/User Story Impact (`docs/functional analysis/`)\r\n- Affected Epic(s): [name or ID]\r\n- Existing story gaps: [explanation]\r\n- Acceptance criteria updated: ✅ Yes / ❌ No\r\n- Updated story snippet:\r\n```markdown\r\n- As a [user type], when I [do X], I should [see/result] — [Updated or newly added]\r\n````\r\n\r\n---\r\n\r\n#### 🔍 Root Cause Analysis\r\n\r\n* Why the bug occurred\r\n* Why tests didn’t catch it (unit or E2E)\r\n* What area of the codebase was responsible\r\n\r\n---\r\n\r\n#### ✅ Confirmation Test (Expected to Fail)\r\n\r\n```typescript\r\n// Playwright or unit test code here\r\n```\r\n\r\n* Test result: ❌ Failed (expected)\r\n\r\n---\r\n\r\n#### 🛠 Bug Fix Code\r\n\r\n```typescript\r\n// Fixed code\r\n```\r\n\r\n* Root cause fix explanation\r\n* Areas of the system affected\r\n\r\n---\r\n\r\n#### ✅ Confirmation Test (Re-run — Should Pass)\r\n\r\n* Test result: ✅ Passed\r\n\r\n---\r\n\r\n#### 🧪 Unit & Playwright Test Updates\r\n\r\n* New/updated unit tests:\r\n\r\n```typescript\r\n// Code here\r\n```\r\n\r\n* New/updated Playwright tests:\r\n\r\n```typescript\r\n// Code here\r\n```\r\n\r\n* Coverage before: XX% → after: XX%\r\n\r\n---\r\n\r\n#### 📘 Documentation & Diagram Updates\r\n\r\n* `docs/technical/`: [Summary of change or addition]\r\n* `docs/diagrams/`: [Updated diagram placeholder or note]\r\n* `docs/wireframes/`: [Updated design if applicable]\r\n\r\n---\r\n\r\n#### 🧾 Manual & README Updates\r\n\r\n* Manual/help pages: [summary or reason no update was needed]\r\n* README.md: [update summary or “no update needed”]\r\n\r\n---\r\n\r\n#### 📊 Bug Fix Report\r\n\r\n```markdown\r\n**Bug Title:** [Short title]  \r\n**Origin:** [Where/how it was discovered]  \r\n**Root Cause:** [What was broken or missing]  \r\n**Test Gap:** [Why the test suite missed this]  \r\n**Fix Summary:** [What was changed]  \r\n**Documentation Updated:** [Yes/No — which files]  \r\n**Preventative Measures:** [How we’ll avoid this in the future]  \r\n**Status:** ✅ Resolved and Verified\r\n```\r\n\r\n````\r\n\r\nUse `<details>` blocks to collapse long code or doc outputs.\r\n\r\n**Target Audience:**  \r\nThe target audience is **ChatGPT-4o or GPT-4-turbo**, functioning as a full-cycle bug triage and resolution partner on the **Vibecoded** engineering team. It must produce complete, structured, and engineering-grade fixes, tests, and documentation, while also improving future system reliability.\r\n\r\n---\r\n\r\nFix the following bug:\r\n{{User-submitted bug}}",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[{\"key\":\"User-submitted bug\",\"description\":\"description of the bug goes here\"}]",
+          "model": null,
+          "changelog": "added regression testing",
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-01-13T17:49:52.424Z"
+        },
         {
           "versionNumber": 3,
           "content": "**Context:**\r\nYou are working on an established software project called **Vibecoded**, where a bug has been identified by a user, tester, or stakeholder. Your task is to triage, reproduce, confirm, and fix this bug with complete traceability — covering test gap analysis, updates to stories or documentation, code fixes, and verification. This process should be used not just to solve the bug but to **understand why it wasn’t caught** and ensure similar issues do not arise again. All updates must align with Vibecoded’s existing development standards and be reflected in the proper project folders.\r\n\r\nProject structure for reference:\r\n\r\n* **Technical diagrams & datamodels**: `docs/diagrams/`\r\n* **Epics & user stories**: `docs/functional analysis/`\r\n* **Technical documentation**: `docs/technical/`\r\n* **Wireframes**: `docs/wireframes/`\r\n* **Playwright tests**: `frontend-tests/`\r\n* **Unit tests**: alongside relevant components/classes\r\n* **Manual/help pages**: maintained with the app\r\n* **README.md**: root-level documentation\r\n\r\nAll changes should respect this folder structure and maintain minimum 80% test coverage for altered code.\r\n\r\n**Role:**\r\nYou are a seasoned software engineer, QA lead, technical writer, and product analyst with over 20 years of experience maintaining critical production systems. You specialize in performing in-depth bug triage, root cause analysis, test design, and sustainable fixes. You ensure bugs are resolved thoroughly, prevent regressions, and continuously improve testing, documentation, and system understanding.\r\n\r\n**Action:**\r\nGiven a user-submitted bug report or description, perform the following steps:\r\n\r\n1. **Bug Intake & Analysis**\r\n   a. Parse the user’s bug description.\r\n   b. Identify where this issue should have been accounted for in the existing *epics, user stories, or acceptance criteria* (`docs/functional analysis/`).\r\n   c. Determine and explain why the existing *unit tests* or *Playwright tests* did not catch this bug. Be honest and specific.\r\n\r\n2. **Documentation & Story Updates**\r\n   a. Update or add to *epics/user stories* to cover the scenario revealed by this bug.\r\n   b. Clarify or add acceptance criteria that reflect what failed.\r\n   c. If needed, update or add *wireframes* in `docs/wireframes/` to reflect UI inconsistencies.\r\n\r\n3. **Confirmation Test Creation**\r\n   a. Write a *confirmation test* (unit or Playwright) that reproduces the bug.\r\n   b. Run the test and confirm that it **fails**.\r\n   c. Briefly summarize the failed test outcome and error output.\r\n\r\n4. **Bug Fix Implementation**\r\n   a. Identify and explain the root cause in the code.\r\n   b. Write and apply the code fix.\r\n   c. Run the previously failing test — it must now **pass**.\r\n   d. Confirm and report test success.\r\n\r\n5. **Full Test Coverage**\r\n   a. Write or update additional *unit tests* or *Playwright tests* to ensure similar bugs won’t recur.\r\n   b. Ensure all altered areas remain at ≥80% code coverage.\r\n   c. Self-heal any broken tests caused by this fix.\r\n   d. Report test coverage delta (before/after).\r\n\r\n6. **Documentation & Manual Updates**\r\n   a. If needed, update `docs/technical/` with explanations of the fix, component behavior, or system interaction changes.\r\n   b. Update `docs/diagrams/` if architecture, data flow, or state transitions changed.\r\n   c. Update relevant *manual/help pages* to clarify usage or resolve previous confusion.\r\n\r\n7. **Repository Maintenance**\r\n   a. Update the `README.md` if anything changed about setup, usage, or dev tools.\r\n   b. Note if no changes were needed and why.\r\n   c. Add changes to changelog\r\n\r\n8. **Bug Fix Report**\r\n   a. Write a clear, structured report that summarizes:\r\n\r\n   * Bug origin and impact\r\n   * Root cause\r\n   * Why it wasn’t caught earlier\r\n   * What was changed or added\r\n   * What has been improved to prevent recurrence\r\n     b. Use a tone appropriate for internal engineering retrospectives.\r\n\r\n**Format:**\r\nRespond in **markdown** using the following structure:\r\n\r\n````markdown\r\n### 🐞 Bug: [Brief Title]\r\n\r\n#### 🧾 User Description\r\n> \"[User-submitted description]\"\r\n\r\n---\r\n\r\n#### 📋 Epic/User Story Impact (`docs/functional analysis/`)\r\n- Affected Epic(s): [name or ID]\r\n- Existing story gaps: [explanation]\r\n- Acceptance criteria updated: ✅ Yes / ❌ No\r\n- Updated story snippet:\r\n```markdown\r\n- As a [user type], when I [do X], I should [see/result] — [Updated or newly added]\r\n````\r\n\r\n---\r\n\r\n#### 🔍 Root Cause Analysis\r\n\r\n* Why the bug occurred\r\n* Why tests didn’t catch it (unit or E2E)\r\n* What area of the codebase was responsible\r\n\r\n---\r\n\r\n#### ✅ Confirmation Test (Expected to Fail)\r\n\r\n```typescript\r\n// Playwright or unit test code here\r\n```\r\n\r\n* Test result: ❌ Failed (expected)\r\n\r\n---\r\n\r\n#### 🛠 Bug Fix Code\r\n\r\n```typescript\r\n// Fixed code\r\n```\r\n\r\n* Root cause fix explanation\r\n* Areas of the system affected\r\n\r\n---\r\n\r\n#### ✅ Confirmation Test (Re-run — Should Pass)\r\n\r\n* Test result: ✅ Passed\r\n\r\n---\r\n\r\n#### 🧪 Unit & Playwright Test Updates\r\n\r\n* New/updated unit tests:\r\n\r\n```typescript\r\n// Code here\r\n```\r\n\r\n* New/updated Playwright tests:\r\n\r\n```typescript\r\n// Code here\r\n```\r\n\r\n* Coverage before: XX% → after: XX%\r\n\r\n---\r\n\r\n#### 📘 Documentation & Diagram Updates\r\n\r\n* `docs/technical/`: [Summary of change or addition]\r\n* `docs/diagrams/`: [Updated diagram placeholder or note]\r\n* `docs/wireframes/`: [Updated design if applicable]\r\n\r\n---\r\n\r\n#### 🧾 Manual & README Updates\r\n\r\n* Manual/help pages: [summary or reason no update was needed]\r\n* README.md: [update summary or “no update needed”]\r\n\r\n---\r\n\r\n#### 📊 Bug Fix Report\r\n\r\n```markdown\r\n**Bug Title:** [Short title]  \r\n**Origin:** [Where/how it was discovered]  \r\n**Root Cause:** [What was broken or missing]  \r\n**Test Gap:** [Why the test suite missed this]  \r\n**Fix Summary:** [What was changed]  \r\n**Documentation Updated:** [Yes/No — which files]  \r\n**Preventative Measures:** [How we’ll avoid this in the future]  \r\n**Status:** ✅ Resolved and Verified\r\n```\r\n\r\n````\r\n\r\nUse `<details>` blocks to collapse long code or doc outputs.\r\n\r\n**Target Audience:**  \r\nThe target audience is **ChatGPT-4o or GPT-4-turbo**, functioning as a full-cycle bug triage and resolution partner on the **Vibecoded** engineering team. It must produce complete, structured, and engineering-grade fixes, tests, and documentation, while also improving future system reliability.\r\n\r\n---\r\n\r\nFix the following bug:\r\n{{User-submitted bug}}",
@@ -541,15 +610,15 @@
         "vibe_coding"
       ],
       "collections": [
-        "Vibe coding"
+        "💻 Development & Changes"
       ],
       "collectionIds": [
-        "cmjiat2cr008dvwwciollsthp"
+        "cmkaudk4k001gaxmcml1lunvd"
       ],
-      "viewCount": 10,
-      "copyCount": 11,
+      "viewCount": 29,
+      "copyCount": 43,
       "createdAt": "2025-12-23T08:03:56.833Z",
-      "updatedAt": "2026-01-09T11:21:31.831Z",
+      "updatedAt": "2026-02-25T07:11:30.778Z",
       "versions": [
         {
           "versionNumber": 3,
@@ -600,15 +669,15 @@
         "vibe_coding"
       ],
       "collections": [
-        "Vibe coding"
+        "🚀 Project Initialization"
       ],
       "collectionIds": [
-        "cmjiat2cr008dvwwciollsthp"
+        "cmkauddor001eaxmcy53yt347"
       ],
-      "viewCount": 7,
-      "copyCount": 2,
+      "viewCount": 12,
+      "copyCount": 5,
       "createdAt": "2025-12-26T08:14:22.477Z",
-      "updatedAt": "2026-01-07T07:41:21.819Z",
+      "updatedAt": "2026-05-05T17:47:17.153Z",
       "versions": [
         {
           "versionNumber": 2,
@@ -647,15 +716,15 @@
         "github"
       ],
       "collections": [
-        "Vibe coding"
+        "📦 Release & Deployment"
       ],
       "collectionIds": [
-        "cmjiat2cr008dvwwciollsthp"
+        "cmkauea9s001oaxmc4u6i6eal"
       ],
-      "viewCount": 4,
-      "copyCount": 2,
+      "viewCount": 7,
+      "copyCount": 11,
       "createdAt": "2026-01-01T10:58:47.974Z",
-      "updatedAt": "2026-01-05T18:28:45.551Z",
+      "updatedAt": "2026-04-18T16:19:48.707Z",
       "versions": [
         {
           "versionNumber": 1,
@@ -680,15 +749,15 @@
         "vibe"
       ],
       "collections": [
-        "Vibe coding"
+        "🚀 Project Initialization"
       ],
       "collectionIds": [
-        "cmjiat2cr008dvwwciollsthp"
+        "cmkauddor001eaxmcy53yt347"
       ],
-      "viewCount": 2,
-      "copyCount": 2,
+      "viewCount": 6,
+      "copyCount": 5,
       "createdAt": "2026-01-07T07:56:35.601Z",
-      "updatedAt": "2026-01-07T09:29:35.879Z",
+      "updatedAt": "2026-02-27T14:47:47.543Z",
       "versions": [
         {
           "versionNumber": 1,
@@ -707,22 +776,35 @@
     },
     {
       "id": "cmk5xj93q000gaxmcbbnjl2mh",
-      "title": "Smart Major Release Orchestrator - Split from master",
+      "title": "Split from master (new branch)",
       "description": "This prompt acts as an autonomous Release Manager for \"Vibe Coding\" projects. It automates the transition from one major version to the next:\r\n1. Determine Version Numbers\r\n2. Git Operations (Freeze & Branch)\r\n3. Apply Updates (On the new branch)",
       "tags": [
         "vibe"
       ],
       "collections": [
-        "Vibe coding"
+        "📦 Release & Deployment"
       ],
       "collectionIds": [
-        "cmjiat2cr008dvwwciollsthp"
+        "cmkauea9s001oaxmc4u6i6eal"
       ],
-      "viewCount": 3,
-      "copyCount": 0,
+      "viewCount": 8,
+      "copyCount": 1,
       "createdAt": "2026-01-08T20:58:33.303Z",
-      "updatedAt": "2026-01-08T21:00:29.036Z",
+      "updatedAt": "2026-01-18T08:09:15.236Z",
       "versions": [
+        {
+          "versionNumber": 3,
+          "content": "@workspace Act as a Release Manager and perform a Major Version Release.\r\n\r\n**1. Determine Version Numbers:**\r\n* Read the current version number inside `README.md`.\r\n* Calculate the **Next Major Version** by strictly following Semantic Versioning (Major.Minor.Patch):\r\n    * Increment the MAJOR number by 1.\r\n    * Reset MINOR and PATCH to 0.\r\n    * *Examples:* 2.3.1 becomes 3.0.0; 4.0.0 becomes 5.0.0.\r\n* The release codename is: [[RELEASE_CODENAME]].\r\n\r\n**2. Git Operations (Freeze & Branch):**\r\n* **Freeze:** Create a git tag on the *current* commit (before edits) named `legacy-freeze-v{Current_Version}`.\r\n* **Branch:** Create and checkout a new branch named `release/v{New_Major_Version}-[[RELEASE_CODENAME]]`.\r\n\r\n**3. Apply Updates (On the new branch):**\r\n* **README.md:** Replace the old version number with the {New_Major_Version}.\r\n* **CHANGELOG.md:** Add a new top-level header: `## {New_Major_Version} - [[RELEASE_CODENAME]]`.\r\n\r\nPlease output the calculated version numbers to confirm logic, apply the file edits, and generate the git commands.",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[{\"key\":\"RELEASE_CODENAME\",\"description\":\"\"}]",
+          "model": null,
+          "changelog": "chanegd title",
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-01-18T06:50:27.862Z"
+        },
         {
           "versionNumber": 2,
           "content": "@workspace Act as a Release Manager and perform a Major Version Release.\r\n\r\n**1. Determine Version Numbers:**\r\n* Read the current version number inside `README.md`.\r\n* Calculate the **Next Major Version** by strictly following Semantic Versioning (Major.Minor.Patch):\r\n    * Increment the MAJOR number by 1.\r\n    * Reset MINOR and PATCH to 0.\r\n    * *Examples:* 2.3.1 becomes 3.0.0; 4.0.0 becomes 5.0.0.\r\n* The release codename is: [[RELEASE_CODENAME]].\r\n\r\n**2. Git Operations (Freeze & Branch):**\r\n* **Freeze:** Create a git tag on the *current* commit (before edits) named `legacy-freeze-v{Current_Version}`.\r\n* **Branch:** Create and checkout a new branch named `release/v{New_Major_Version}-[[RELEASE_CODENAME]]`.\r\n\r\n**3. Apply Updates (On the new branch):**\r\n* **README.md:** Replace the old version number with the {New_Major_Version}.\r\n* **CHANGELOG.md:** Add a new top-level header: `## {New_Major_Version} - [[RELEASE_CODENAME]]`.\r\n\r\nPlease output the calculated version numbers to confirm logic, apply the file edits, and generate the git commands.",
@@ -759,15 +841,15 @@
         "vibe"
       ],
       "collections": [
-        "Vibe coding"
+        "📦 Release & Deployment"
       ],
       "collectionIds": [
-        "cmjiat2cr008dvwwciollsthp"
+        "cmkauea9s001oaxmc4u6i6eal"
       ],
-      "viewCount": 1,
-      "copyCount": 0,
+      "viewCount": 5,
+      "copyCount": 1,
       "createdAt": "2026-01-08T21:01:44.899Z",
-      "updatedAt": "2026-01-08T21:01:46.083Z",
+      "updatedAt": "2026-04-17T05:07:33.143Z",
       "versions": [
         {
           "versionNumber": 1,
@@ -783,14 +865,588 @@
           "createdAt": "2026-01-08T21:01:44.899Z"
         }
       ]
+    },
+    {
+      "id": "cmk9uvwmt001aaxmcqlcjwoza",
+      "title": "Unit Test Execution & Reporting",
+      "description": "auto-detect unit-test-framework, search all test files, execute full suite, and report with prioritized actions",
+      "tags": [
+        "vibe_coding",
+        "unit_tests"
+      ],
+      "collections": [
+        "🐞 QA & Testing"
+      ],
+      "collectionIds": [
+        "cmkaudpuj001iaxmclto48cmc"
+      ],
+      "viewCount": 7,
+      "copyCount": 5,
+      "createdAt": "2026-01-11T14:55:29.526Z",
+      "updatedAt": "2026-04-07T05:56:43.361Z",
+      "versions": [
+        {
+          "versionNumber": 1,
+          "content": "> \"Act as a **Lead SDET** obsessed with Visibility and Quality Metrics. I need you to perform a comprehensive **Health Check Audit** on the entire project's unit test suite.\r\n>\r\n> **The Context**\r\n> * **Framework:** **AUTO-DETECT.** Do not assume a specific framework. You must determine the test runner (Jest, Vitest, Mocha, etc.) by inspecting the project configuration.\r\n> * **Goal:** Execute **ALL** unit tests and generate a detailed \\\"State of Quality\\\" report with a prioritized remediation plan.\r\n> * **Requirement:** You must identify every test file in the project to ensure no legacy tests are skipped.\r\n>\r\n> **Phase 1: Discovery & Configuration**\r\n> 1.  **Framework Detection:** Read `package.json` immediately.\r\n>     * Check `devDependencies` and `dependencies` for known runners: `jest`, `vitest`, `mocha`, `ava`.\r\n>     * *Action:* Explicitly state which framework is detected.\r\n> 2.  **Dependency Check:** Verify if the corresponding coverage tool is installed. If missing, note it as a 'Major' issue in the report but proceed with testing.\r\n> 3.  **File Scan:** Search the directory tree recursively for all test patterns matching the detected framework (typically `*.test.ts|js`, `*.spec.ts|js`).\r\n>\r\n> **Phase 2: Full Execution**\r\n> 1.  **Construct Command:** based on the detected framework, build the correct execution command (e.g., `npx vitest run --coverage` or `npx jest --coverage`).\r\n> 2.  **Run & Capture:** Execute the command. Capture:\r\n>     * Test Failures (stacks and error messages).\r\n>     * Coverage Summary Tables.\r\n>\r\n> **Phase 3: Failure Analysis**\r\n> *If any tests fail or coverage is low:*\r\n> 1.  **Isolate:** List specific files/cases that failed.\r\n> 2.  **Diagnose:** Determine the root cause (timeout, logic error, missing mock, etc.).\r\n>\r\n> **Phase 4: Comprehensive Reporting**\r\n> Generate a Markdown report file in `Technical review/` named `Full_Test_Suite_Report_[Timestamp].md`.\r\n>\r\n> The report must contain:\r\n>\r\n> 1.  **Executive Summary:**\r\n>     * **Detected Framework:** [Name]\r\n>     * Pass/Fail Ratio & Global Coverage %.\r\n>     * **Health Score:** Grade (A-F).\r\n>\r\n> 2.  **Test Execution Matrix:**\r\n>     | Test File | Status (✅/❌) | Duration | Coverage % | Critical Failures |\r\n>     | :--- | :--- | :--- | :--- | :--- |\r\n>     | `lib/auth.test.ts` | ✅ PASS | 200ms | 95% | None |\r\n>\r\n> 3.  **Prioritized Action Plan (The Fix List):**\r\n>     * You must list necessary actions to fix failures or improve coverage.\r\n>     * **MANDATORY:** Assign a **Severity** to each action based on this scale:\r\n>         * **🔴 BLOCKER:** Tests crashing, build failures, or 0% coverage on critical core logic (e.g., Auth, Payments).\r\n>         * **🟠 CRITICAL:** High-priority logic failing, or coverage < 50% on important features.\r\n>         * **🟡 MAJOR:** Standard test failures, missing mocks, or coverage 50%-80%.\r\n>         * **🔵 MINOR:** Code style, naming conventions, or coverage slightly below threshold (e.g., 79%).\r\n>\r\n>     * *Format:*\r\n>     | Severity | File/Module | Action Required | Estimate |\r\n>     | :--- | :--- | :--- | :--- |\r\n>     | 🔴 BLOCKER | `lib/payment.ts` | Fix crashing test `chargeUser`. Mock DB connection. | 30m |\r\n>     | 🟡 MAJOR | `utils/date.ts` | Increase coverage from 40% to 80%. | 1h |\r\n>\r\n> **Start by reading package.json to detect the framework.**\"",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[]",
+          "model": null,
+          "changelog": null,
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-01-11T14:55:29.526Z"
+        }
+      ]
+    },
+    {
+      "id": "cmkl7ezka000114oj1ajbxzzw",
+      "title": "Video to documentation prompt",
+      "description": "Use the multimodal capabilities to transform a video into written documentation",
+      "tags": [
+        "vibe_coding",
+        "documentation"
+      ],
+      "collections": [
+        "📄 Documentation"
+      ],
+      "collectionIds": [
+        "cmkaue5iv001maxmco6zyhb5i"
+      ],
+      "viewCount": 1,
+      "copyCount": 0,
+      "createdAt": "2026-01-19T13:31:43.115Z",
+      "updatedAt": "2026-01-19T13:31:44.253Z",
+      "versions": [
+        {
+          "versionNumber": 1,
+          "content": "**[INPUT SETTINGS]**\r\n\r\n* **SOURCE:** [[source]] (Upload your video file here OR paste the YouTube URL)\r\n* **DOC_TYPE:** [[type_of_doc]] (e.g., User Manual, Step-by-Step Tutorial, SOP)\r\n* **EXTENSION:** [[extension]] (e.g., .docx, .pdf, .html)\r\n* **TONE:** Professional, clear, and encouraging.\r\n\r\n**[ROLE]**\r\nAct as a Senior Technical Writer and Software Education Specialist. You are an expert at converting video workflows into professional written documentation.\r\n\r\n**[GOAL]**\r\nAnalyze the provided `[SOURCE]` video and transform it into a high-quality `[DOC_TYPE]` saved as a `[EXTENSION]` file. The final output must be ready for me to download or view immediately.\r\n\r\n**[PROCESS - DO THIS STEP BY STEP]**\r\n\r\n**1. MULTIMODAL ANALYSIS**\r\n\r\n* **Visuals:** Scan the video for UI elements (buttons, menus, fields). Identify exactly what the user clicks and types.\r\n* **Audio:** Transcribe the narration to understand the \"why\" and \"context\" behind the actions.\r\n* **Structure:** Break the video down into logical Chapters/Sections based on the workflow (e.g., \"Login,\" \"Configuration,\" \"Exporting\").\r\n\r\n**2. DRAFTING THE CONTENT**\r\nWrite the content using the following structure:\r\n\r\n* **Title:** Action-oriented title.\r\n* **Overview:** A short paragraph explaining the goal of this workflow.\r\n* **Prerequisites:** Bullet points of what is needed before starting.\r\n* **The Steps (The Core):**\r\n* Use numbered lists for sequential actions.\r\n* **Bold** all UI elements (e.g., \"Click **Save**\").\r\n* **Screenshot Placeholders:** Since you cannot always extract high-res images, insert a placeholder in this exact format: `> [IMAGE @ 01:23: Description of screen]` so I can snap it later.\r\n* **Tip/Warning Boxes:** If the user mentions a common mistake or pro-tip in the video, format it as a distinct note.\r\n\r\n\r\n\r\n**3. FILE GENERATION (CRITICAL)**\r\n\r\n* **If [EXTENSION] is .HTML:** Generate a single HTML file with embedded CSS for a clean, modern \"Knowledge Base\" look. Use a sticky table of contents and responsive design. Render it so I can download it or view it as an Artifact.\r\n* **If [EXTENSION] is .DOCX or .PDF:** **DO NOT** just output text. You must write and **EXECUTE** a Python script (using `python-docx` or `fpdf`) to generate the actual binary file. Structure the document with real Headers (Level 1, 2), Bullet points, and styling. Provide the link to download the generated file.\r\n\r\n**[EXECUTE NOW]**\r\n\r\n---\r\n\r\n### Why this prompt works better for you\r\n\r\n1. **The \"Execute\" Command:** By explicitly telling the AI (specifically in the `.DOCX` / `.PDF` section) to *execute a Python script*, you force the AI to use its internal computer. It will quietly write code in the background, run it, and pop out a \"Download File\" link.\r\n2. **Screenshot Placeholders:** The biggest pain point with AI video analysis is that it can't \"snip\" a high-quality image and paste it into a Word doc easily.\r\n* This prompt forces a **Time-stamped Placeholder** (e.g., `> [IMAGE @ 02:15]`).\r\n* **Pro Tip:** When you open the Word doc, you can just scrub your video to `02:15`, take a screenshot, and paste it right over that line.\r\n\r\n\r\n3. **Visual Parsing:** The prompt asks the AI to bold UI elements (like **\"Submit\"**). This mimics tools like `guide.com` which highlight where to click.",
+          "shortContent": "",
+          "usageExample": "The \"Execute\" Command: By explicitly telling the AI (specifically in the .DOCX / .PDF section) to execute a Python script, you force the AI to use its internal computer. It will quietly write code in the background, run it, and pop out a \"Download File\" link.\r\n\r\nScreenshot Placeholders: The biggest pain point with AI video analysis is that it can't \"snip\" a high-quality image and paste it into a Word doc easily.\r\n\r\nThis prompt forces a Time-stamped Placeholder (e.g., > [IMAGE @ 02:15]).\r\n\r\nPro Tip: When you open the Word doc, you can just scrub your video to 02:15, take a screenshot, and paste it right over that line.\r\n\r\nVisual Parsing: The prompt asks the AI to bold UI elements (like \"Submit\"). This mimics tools like guide.com which highlight where to click.",
+          "variableDefinitions": "[{\"key\":\"type_of_doc\",\"description\":\"e.g., User Manual, Step-by-Step Tutorial, SOP\"},{\"key\":\"extension\",\"description\":\"e.g., .docx, .pdf, .html\"},{\"key\":\"source\",\"description\":\"Upload your video file here OR paste the YouTube URL\"}]",
+          "model": null,
+          "changelog": null,
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-01-19T13:31:43.115Z"
+        }
+      ]
+    },
+    {
+      "id": "cmlouvm930005k7kda8yzbed5",
+      "title": "Gap Analysis & Functional Extension",
+      "description": "Analyse functional analysis of a project and propose extra features",
+      "tags": [
+        "vibe_coding",
+        "analysis"
+      ],
+      "collections": [
+        "♻️ Review & Refactoring"
+      ],
+      "collectionIds": [
+        "cmkaudv7k001kaxmcqr75lgd8"
+      ],
+      "viewCount": 1,
+      "copyCount": 1,
+      "createdAt": "2026-02-16T07:31:30.923Z",
+      "updatedAt": "2026-02-16T08:13:46.712Z",
+      "versions": [
+        {
+          "versionNumber": 1,
+          "content": "# Prompt: Business & Functional Gap Analysis\r\n\r\n**Context:**\r\nYou are acting as a **Senior Business & Functional Analyst** and **Product Strategist** with over 20 years of experience. Your goal is to bridge the gap between high-level business goals and technical execution. You are currently auditing a project to ensure the software's functional documentation aligns with its strategic vision.\r\n\r\n**The project environment consists of:**\r\n* **Project Charter:** The source of truth for goals, stakeholders, and high-level requirements.\r\n* **Existing Documentation:** Look for the current state of the system, stored in example follows:\r\n    * Technical diagrams and data models: `docs/diagrams/`\r\n    * Epics and user stories: `docs/functional analysis/`\r\n    * Technical documentation: `docs/technical/`\r\n    * Wireframes: `docs/wireframes/`\r\n    * Project overview and setup: `README.md`\r\n\r\n**Variables:**\r\n* **Project Charter:** `[[Project_Charter]]`\r\n* **Existing Documentation:** `[[Existing_Documentation]]`\r\n\r\n---\r\n\r\n**Step 1: Gap Analysis & Discovery (Action Required)**\r\nYour first task is to perform a deep-dive comparison between the `[[Project_Charter]]` and the `[[Existing_Documentation]]`. \r\n\r\n1. **Identify Omissions:** What features or business requirements mentioned in the Charter are missing from the current Functional Analysis or Technical Docs?\r\n2. **Identify Inconsistencies:** Where does the current documentation contradict the goals of the Charter?\r\n3. **Edge Case Analysis:** Identify functional gaps (error handling, user permissions, data validations) that are implied by the Charter but not yet documented.\r\n4. **Proposed List:** Present a table of **Suggested Features/Improvements**. \r\n\r\n**STOP:** Provide this list to the user and **wait for approval** before proceeding to Step 2.\r\n\r\n---\r\n\r\n**Step 2: Functional Specification & Alignment**\r\nOnce the user approves specific suggestions, you will generate the actual documentation content. You must strictly mimic the **existing style, tone, and formatting** found in `[[Existing_Documentation]]`.\r\n\r\nFor each approved feature, provide the following updates:\r\n\r\n1. **Functional Analysis Updates (`docs/functional analysis/`):**\r\n    * Draft new or updated **Epics**, **User Stories**, and **Acceptance Criteria**.\r\n2. **Technical & Diagram Impact (`docs/technical/` & `docs/diagrams/`):**\r\n    * Describe changes needed for data models or system architecture.\r\n3. **UX/UI Specs (`docs/wireframes/`):**\r\n    * Describe functional requirements for new screens or UI components.\r\n4. **Changelog:**\r\n    * Briefly summarize the additions for the project history.\r\n\r\n**Final Output Format:**\r\n```markdown\r\n### Analysis Report: [Feature Title]\r\n#### 📄 Updates for `docs/functional analysis/`\r\n[Insert content]\r\n#### ⚙️ Updates for `docs/technical/` & `docs/diagrams/`\r\n[Insert content]\r\n#### 📋 Changelog Entry\r\n[Insert content]\r\n---\r\n**AI Reference ID:** [Unique-Analyst-ID-2026]",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[{\"key\":\"Project_Charter\",\"description\":\"\"},{\"key\":\"Existing_Documentation\",\"description\":\"\"}]",
+          "model": null,
+          "changelog": null,
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-02-16T07:31:30.923Z"
+        }
+      ]
+    },
+    {
+      "id": "cmlox66dw0009k7kdhqowbq79",
+      "title": "UX/UI Design & Wireframe designer",
+      "description": "Design UX/UI & wireframes for a given project",
+      "tags": [
+        "vibe_coding",
+        "UX",
+        "UI"
+      ],
+      "collections": [
+        "♻️ Review & Refactoring"
+      ],
+      "collectionIds": [
+        "cmkaudv7k001kaxmcqr75lgd8"
+      ],
+      "viewCount": 2,
+      "copyCount": 2,
+      "createdAt": "2026-02-16T08:35:42.932Z",
+      "updatedAt": "2026-02-17T14:59:00.570Z",
+      "versions": [
+        {
+          "versionNumber": 1,
+          "content": "# Prompt: UX/UI Design & Wireframe Evolution\r\n\r\n**Context:**\r\nYou are acting as a **Senior UX/UI Designer and Product Strategist** with over 20 years of experience in human-computer interaction (HCI). Your goal is to ensure the visual layer of the software perfectly maps to the **Project Charter** and the **Functional Analysis** while adhering to a specific aesthetic direction.\r\n\r\n**The design environment consists of:**\r\n* **Project Charter:** The vision, brand values, and user personas.\r\n* **Existing Documentation:** Functional requirements and technical constraints.\r\n* **Wireframe Repository:** The specific location where UI assets are stored.\r\n* **Design Style:** The specific aesthetic or UI framework to be followed.\r\n\r\n**Variables:**\r\n* **Project Charter:** `[[Project_Charter]]`\r\n* **Existing Documentation:** `[[Existing_Documentation]]`\r\n* **Wireframe Folder:** `[[Wireframe_Folder]]`\r\n* **Design Style:** `[[Design_Style]]`\r\n\r\n---\r\n\r\n**Step 1: UX Audit & Style Alignment**\r\nPerform a deep-dive audit by comparing the `[[Project_Charter]]` and `[[Existing_Documentation]]` against the current state of the `[[Wireframe_Folder]]`, filtered through the lens of the `[[Design_Style]]`.\r\n\r\n1. **User Flow Gaps:** Are there missing steps in the current journeys required by the Charter?\r\n2. **Style Consistency:** Does the current UI in `[[Wireframe_Folder]]` match the requested `[[Design_Style]]`?\r\n3. **Proposed Enhancements:** Present a table of **Suggested UI/UX Improvements**.\r\n\r\n| Proposed UI/UX Change | User Need (Ref. Charter) | Impacted Screens | Style Note |\r\n|:---|:---|:---|:---|\r\n| [Screen Name] | [Why it's needed] | [Path] | [How it fits the style] |\r\n\r\n**STOP: Wait for User Approval.**\r\n\r\n---\r\n\r\n**Step 2: Wireframe Specification**\r\nOnce approved, generate specifications that strictly mimic the naming conventions in `[[Wireframe_Folder]]` and the aesthetics of `[[Design_Style]]`.\r\n\r\nFor each approved item:\r\n1. **User Journey:** Step-by-step walkthrough.\r\n2. **Wireframe Specs:** Detailed layout, grid, and component usage (Buttons, Inputs, etc.).\r\n3. **Interaction Logic:** Hover/Active states and error handling.\r\n4. **Style Implementation:** Explain how `[[Design_Style]]` was applied (e.g., specific border-radii, typography, or spacing tokens).\r\n\r\n**Final Output Format:**\r\n```markdown\r\n### 🎨 Design Specification: [Feature Title]\r\n#### 📍 Location: `[[Wireframe_Folder]]/[filename].md`\r\n#### 🗺️ User Journey\r\n[Step-by-step walkthrough]\r\n#### ⚡ Interaction Logic & [[Design_Style]] Application\r\n[Detailed specs]\r\n---\r\n**AI Design ID:** [UX-UID-2026-BETA]",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[{\"key\":\"Project_Charter\",\"description\":\"\"},{\"key\":\"Existing_Documentation\",\"description\":\"\"},{\"key\":\"Wireframe_Folder\",\"description\":\"\"},{\"key\":\"Design_Style\",\"description\":\"\"}]",
+          "model": null,
+          "changelog": null,
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-02-16T08:35:42.932Z"
+        }
+      ]
+    },
+    {
+      "id": "cmlxwojq7000rk7kd8wex1ar7",
+      "title": "Performance & Robustness Audit",
+      "description": "This technical review prompt acts as a deep-tissue diagnostic tool designed to transition a \"vibe-coded\" prototype into a high-scale, resilient system. It systematically hunts for \"invisible debt\"—such as memory leaks, race conditions, and cascading failures—that standard functional testing often misses. The resulting \"Bottleneck Table\" provides a prioritized roadmap to ensure the application remains performant and stable under real-world production stress.",
+      "tags": [
+        "vibe_coding",
+        "performance",
+        "robustness"
+      ],
+      "collections": [
+        "♻️ Review & Refactoring"
+      ],
+      "collectionIds": [
+        "cmkaudv7k001kaxmcqr75lgd8"
+      ],
+      "viewCount": 2,
+      "copyCount": 1,
+      "createdAt": "2026-02-22T15:31:55.999Z",
+      "updatedAt": "2026-03-16T11:57:34.975Z",
+      "versions": [
+        {
+          "versionNumber": 1,
+          "content": "Role: Act as a Senior Principal Engineer specializing in Site Reliability Engineering (SRE), Performance Tuning, and Systems Programming. Your goal is a high-pressure audit to transform this codebase from a \"happy-path\" prototype into a high-throughput, fault-tolerant system.\r\n\r\nPhase 1: Resource & Infrastructure Discovery\r\nBefore auditing logic, analyze the configuration and environment files to:\r\n* Identify Resource Constraints: Check for CPU/Memory limits (Docker, K8s configs), timeouts, and concurrency settings.\r\n* Map Data Flow: Identify external dependencies (Third-party APIs, CDNs, DB clusters) and the \"Critical Path\" for user requests.\r\n* Locate Heavy Operations: Find image processing, heavy loops, serialization/deserialization points, and large asset imports.\r\n\r\nPhase 2: The \"Robustness & Scale\" Rubric\r\nScan the codebase for the following \"Fragility Smells\" across four dimensions:\r\n* I. Latency & Resource Contention:\r\n** The Blocking Thread: Synchronous/blocking calls on the main event loop or UI thread.\r\n** Resource Leaks: Open file descriptors, unclosed DB connections, or missing cleanup in long-running processes (e.g., useEffect or defer).\r\n** Memory Bloat: Large objects held in global scope or unnecessary \"Deep Cloning\" of data structures.\r\n* II. Fault Tolerance & Resilience:\r\n** The Cascading Failure: Lack of \"Circuit Breakers\" or Retries on external API calls.\r\n** The \"Happy Path\" Assumption: Missing timeouts on network requests or disk I/O.\r\n** Single Point of Failure (SPOF): Logic that causes the entire application to crash if a non-critical side-effect (like an analytics ping) fails.\r\n* III. Data Integrity & Concurrency:\r\n** Race Conditions: Unprotected shared state or non-atomic operations in concurrent environments.\r\n** Indeterminate State: Logic that relies on the order of asynchronous operations without proper synchronization (e.g., \"Last-write-wins\" bugs).\r\n** Cache Invalidation Gaps: Stale data usage or \"Thundering Herd\" risks where many requests hit the DB simultaneously after a cache expires.\r\n* IV. Scalability & Efficiency:\r\n** Inefficient Serialization: Massive JSON payloads or repeated parsing of the same config files.\r\n** Redundant Computation: Pure functions or expensive calculations being re-run instead of memoized.\r\n** The \"Eager Loader\": Fetching entire table rows/documents when only a single ID or boolean is required.\r\n\r\nPhase 3: The Deliverable (Markdown Report)\r\nConstruct a report titled \"Stress Test & Robustness Roadmap: [Detected Project Name]\".\r\n* System Health Score: Provide a score (0-100) based on perceived stability under load.\r\nThe Bottleneck Table:\r\n| Location | Priority | Weakness | Impact | Optimization/Fix |\r\n| :--- | :--- | :--- | :--- | :--- |\r\n| path/to/file | P0/P1/P2 | e.g., Unbounded Concurrency | App crashes under load | Use a worker pool/semaphore |\r\n\r\nPhase 4: Execution & Persistence\r\n* Analyze the codebase based on the discovery in Phase 1.\r\n* Generate the report in memory.\r\n* Check for a folder named Performance_Reviews. If it doesn’t exist, create it.\r\n* Save the report as Robustness_Audit_YYYY-MM-DD_HH-mm.md using the current timestamp.",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[]",
+          "model": null,
+          "changelog": null,
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-02-22T15:31:55.999Z"
+        }
+      ]
+    },
+    {
+      "id": "cmlxwto0d000vk7kd4c97nytt",
+      "title": "Security & Hardening Audit",
+      "description": "This technical review prompt functions as an automated security auditor designed to identify critical vulnerabilities before they are exploited in production. It meticulously scans for \"Zero Trust\" violations, ranging from hardcoded secrets and injection flaws to broken authentication patterns. The final report delivers a prioritized \"Vulnerability Table\" that maps specific code risks to actionable remediation steps for a battle-hardened system.",
+      "tags": [
+        "vibe_coding",
+        "security"
+      ],
+      "collections": [
+        "♻️ Review & Refactoring"
+      ],
+      "collectionIds": [
+        "cmkaudv7k001kaxmcqr75lgd8"
+      ],
+      "viewCount": 1,
+      "copyCount": 2,
+      "createdAt": "2026-02-22T15:35:54.829Z",
+      "updatedAt": "2026-03-22T11:04:44.969Z",
+      "versions": [
+        {
+          "versionNumber": 1,
+          "content": "Role: Act as a Senior Principal Security Engineer and Penetration Tester. Your goal is a hostile-environment audit to transform this \"vibe-coded\" project into a battle-hardened, production-ready system capable of withstanding real-world exploits.\r\n\r\nPhase 1: Surface Area Discovery\r\nBefore checking logic, map the attack surface by scanning configuration and environment files to:\r\n* Identify Secret Leakage: Scan for hardcoded API keys, certificates, or credentials in the source and .env.example files.\r\n* Map Entry Points: List all public-facing routes, WebSockets, and third-party webhooks that accept external input.\r\n* Audit Permissions: Check Dockerfile, package.json, or IAM-related configs for over-privileged execution contexts (e.g., running as root).\r\n\r\nPhase 2: The \"Zero Trust\" Rubric\r\nScan the codebase for the following \"Security Smells\" across four dimensions:\r\n* I. Injection & Input Sanitization:\r\n** The Injection Gateway: Direct string interpolation in SQL queries, shell commands, or HTML rendering (XSS risk).\r\n** Weak Validation: Trusting client-side data without server-side schema enforcement or type-checking.\r\n** Mass Assignment: Logic that allows users to update sensitive fields (e.g., is_admin) by sending extra JSON keys.\r\n* II. Authentication & Session Integrity:\r\n** Broken Auth: Weak password hashing, lack of rate-limiting on login endpoints, or hardcoded JWT secrets.\r\n** Insecure Session Management: Cookies missing HttpOnly, Secure, or SameSite flags.\r\n** IDOR (Insecure Direct Object Reference): Endpoints that fetch data by ID without verifying if the current user owns that resource.\r\n* III. Data Privacy & Cryptography:\r\n** PII Leaks: Sensitive user data (emails, tokens) being written to application logs or error messages.\r\n** Crypto Antipatterns: Use of deprecated algorithms (MD5, SHA1) or rolling custom encryption logic instead of standard libraries.\r\n** Transport Risks: Hardcoded http:// URLs or missing CORS policies that are too permissive (*).\r\n* IV. Supply Chain & Environment:\r\n** Dependency Vulnerabilities: Known-vulnerable versions of libraries or excessive \"ghost\" dependencies.\r\n** Debug Remnants: Development-only \"backdoors,\" verbose error stack traces in production, or active /debug endpoints.\r\n\r\nPhase 3: The Deliverable (Markdown Report)\r\nConstruct a report titled \"Security Hardening Roadmap: [Detected Project Name]\".\r\n* Security Posture Score: Provide a score (0-100) based on the \"Exploitability\" of the current state.\r\nThe Vulnerability Table:\r\n| Location | Severity | Vulnerability | The Exploit | The Fix |\r\n| :--- | :--- | :--- | :--- | :--- |\r\n| path/to/file | Critical/High/Med | e.g., SQL Injection | Attacker can dump DB | Use Parameterized Queries |\r\n\r\nPhase 4: Execution & Persistence\r\n1. Analyze the codebase based on the discovery in Phase 1.\r\n2. Generate the report in memory.\r\n3. Check for a folder named Security_Reviews. If it doesn’t exist, create it.\r\n4. Save the report as Security_Audit_YYYY-MM-DD_HH-mm.md using the current timestamp.",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[]",
+          "model": null,
+          "changelog": null,
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-02-22T15:35:54.829Z"
+        }
+      ]
+    },
+    {
+      "id": "cmm1x5ijx0011k7kdly1llmwa",
+      "title": "Autonomous Frontend Coverage, Discovery & Initialization Agent",
+      "description": "This prompt directs an AI agent to dynamically discover a project's source and test folders to map out existing implementation versus test coverage. It identifies missing tests and autonomously writes them, using a user-specified library if no suite currently exists. Finally, the agent diagnoses and fixes encountered bugs in both the tests and source code, providing a detailed executive report of all healing actions taken.",
+      "tags": [
+        "vibe_coding",
+        "frontend_testing",
+        "ui_testing",
+        "test_automation"
+      ],
+      "collections": [
+        "🐞 QA & Testing"
+      ],
+      "collectionIds": [
+        "cmkaudpuj001iaxmclto48cmc"
+      ],
+      "viewCount": 9,
+      "copyCount": 5,
+      "createdAt": "2026-02-25T10:56:12.334Z",
+      "updatedAt": "2026-05-05T13:30:44.797Z",
+      "versions": [
+        {
+          "versionNumber": 3,
+          "content": "## Role\r\n\r\nYou are an **Autonomous QA Architect & SDET**. Your mission is to explore an unknown codebase, map the relationship between source code and testing suites, identify gaps in coverage, and autonomously implement missing tests and bug fixes.\r\n\r\n\r\n## Phase 1: Environment Discovery & Mapping\r\n\r\n1. **Project Traversal:** Scan the root directory to identify the project type (e.g., Vite, Next.js, Webpack).\r\n2. **Locate Source & Tests:** * Dynamically find the primary source code directory (e.g., `./src`, `./lib`, or `./app`) by searching for component patterns.\r\n* Search for any existing test-related directories or file patterns (e.g., `**/tests/*.spec.ts`, `**/__tests__/*.js`).\r\n\r\n\r\n3. **Library Check & Initialization:** * If **no existing frontend tests** or configurations are found, initialize the project using **`[[frontend_test_library_of_choice]]`**.\r\n* Create the necessary configuration files (e.g., `playwright.config.ts` or `vitest.config.ts`) and directory structures required for that library.\r\n\r\n\r\n4. **Dependency Audit:** Read `package.json` to verify or suggest the installation of the chosen testing utilities.\r\n\r\n## Phase 2: Implementation vs. Coverage Analysis\r\n\r\n1. **Functional Inventory:** Generate a list of all implemented components, hooks, and utility modules found in the discovered source directory.\r\n2. **Traceability Matrix:** Map every existing test file (if any) to the specific source file it validates.\r\n3. **Gap Identification:** * List \"Ghost Modules\": Source files with no corresponding test files.\r\n* Identify \"Shallow Coverage\": Existing tests that only check for rendering but miss interaction or edge cases.\r\n\r\n\r\n4. **Reporting:** Present a list of missing frontend tests required for \"Good Test Coverage\".\r\n\r\n## Phase 3: Iterative Implementation & Bug Fixing\r\n\r\nFor **EVERY** gap or failure identified:\r\n\r\n1. **Write Missing Tests:** Create new test files using the project’s patterns (or the initialized library's standards). Prioritize \"Web-First\" locators (e.g., `getByRole`) for UI tests.\r\n2. **Bug Discovery:** While writing tests, if a component fails to behave as expected (e.g., crashes on null props, failing validation), document it as a bug.\r\n3. **Autonomous Repair:** * Fix the bug in the source code.\r\n* Heal any broken or failing existing tests.\r\n\r\n\r\n4. **Verification:** Execute the specific test to confirm the fix and the new coverage.\r\n\r\n## Phase 4: Final Executive Report\r\n\r\nProvide a summary of the intervention:\r\n\r\n| Feature/Module | Found Path | Action Taken | Bugs Fixed | Coverage Impact |\r\n| --- | --- | --- | --- | --- |\r\n| [Name] | [Detected Path] | [e.g., Created New Test] | [Description/None] | [e.g., +25%] |\r\n\r\n## Constraints & Rules\r\n\r\n* **No Path Assumptions:** You must verify where files live before suggesting edits.\r\n* **Minimal Surface Change:** Do not refactor code for style; only for functionality, bug fixes, or testability.\r\n* **Imports:** Ensure all necessary library imports are present when creating new test files.\r\n\r\n## Initial Action\r\n\r\n**Start by scanning the root directory to identify the source and test folders. If none exist, prepare to initialize `[[frontend_test_library_of_choice]]`. List all implemented components and their current test status before proceeding.**\r\n",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[{\"key\":\"frontend_test_library_of_choice\",\"description\":\"(e.g., Playwright, Vitest, Cypress)\"}]",
+          "model": null,
+          "changelog": "added tags",
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-02-25T11:17:28.250Z"
+        },
+        {
+          "versionNumber": 2,
+          "content": "## Role\r\n\r\nYou are an **Autonomous QA Architect & SDET**. Your mission is to explore an unknown codebase, map the relationship between source code and testing suites, identify gaps in coverage, and autonomously implement missing tests and bug fixes.\r\n\r\n\r\n## Phase 1: Environment Discovery & Mapping\r\n\r\n1. **Project Traversal:** Scan the root directory to identify the project type (e.g., Vite, Next.js, Webpack).\r\n2. **Locate Source & Tests:** * Dynamically find the primary source code directory (e.g., `./src`, `./lib`, or `./app`) by searching for component patterns.\r\n* Search for any existing test-related directories or file patterns (e.g., `**/tests/*.spec.ts`, `**/__tests__/*.js`).\r\n\r\n\r\n3. **Library Check & Initialization:** * If **no existing frontend tests** or configurations are found, initialize the project using **`[[frontend_test_library_of_choice]]`**.\r\n* Create the necessary configuration files (e.g., `playwright.config.ts` or `vitest.config.ts`) and directory structures required for that library.\r\n\r\n\r\n4. **Dependency Audit:** Read `package.json` to verify or suggest the installation of the chosen testing utilities.\r\n\r\n## Phase 2: Implementation vs. Coverage Analysis\r\n\r\n1. **Functional Inventory:** Generate a list of all implemented components, hooks, and utility modules found in the discovered source directory.\r\n2. **Traceability Matrix:** Map every existing test file (if any) to the specific source file it validates.\r\n3. **Gap Identification:** * List \"Ghost Modules\": Source files with no corresponding test files.\r\n* Identify \"Shallow Coverage\": Existing tests that only check for rendering but miss interaction or edge cases.\r\n\r\n\r\n4. **Reporting:** Present a list of missing frontend tests required for \"Good Test Coverage\".\r\n\r\n## Phase 3: Iterative Implementation & Bug Fixing\r\n\r\nFor **EVERY** gap or failure identified:\r\n\r\n1. **Write Missing Tests:** Create new test files using the project’s patterns (or the initialized library's standards). Prioritize \"Web-First\" locators (e.g., `getByRole`) for UI tests.\r\n2. **Bug Discovery:** While writing tests, if a component fails to behave as expected (e.g., crashes on null props, failing validation), document it as a bug.\r\n3. **Autonomous Repair:** * Fix the bug in the source code.\r\n* Heal any broken or failing existing tests.\r\n\r\n\r\n4. **Verification:** Execute the specific test to confirm the fix and the new coverage.\r\n\r\n## Phase 4: Final Executive Report\r\n\r\nProvide a summary of the intervention:\r\n\r\n| Feature/Module | Found Path | Action Taken | Bugs Fixed | Coverage Impact |\r\n| --- | --- | --- | --- | --- |\r\n| [Name] | [Detected Path] | [e.g., Created New Test] | [Description/None] | [e.g., +25%] |\r\n\r\n## Constraints & Rules\r\n\r\n* **No Path Assumptions:** You must verify where files live before suggesting edits.\r\n* **Minimal Surface Change:** Do not refactor code for style; only for functionality, bug fixes, or testability.\r\n* **Imports:** Ensure all necessary library imports are present when creating new test files.\r\n\r\n## Initial Action\r\n\r\n**Start by scanning the root directory to identify the source and test folders. If none exist, prepare to initialize `[[frontend_test_library_of_choice]]`. List all implemented components and their current test status before proceeding.**\r\n",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[{\"key\":\"frontend_test_library_of_choice\",\"description\":\"(e.g., Playwright, Vitest, Cypress)\"}]",
+          "model": null,
+          "changelog": "added description",
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-02-25T10:57:40.512Z"
+        },
+        {
+          "versionNumber": 1,
+          "content": "## Role\r\n\r\nYou are an **Autonomous QA Architect & SDET**. Your mission is to explore an unknown codebase, map the relationship between source code and testing suites, identify gaps in coverage, and autonomously implement missing tests and bug fixes.\r\n\r\n\r\n## Phase 1: Environment Discovery & Mapping\r\n\r\n1. **Project Traversal:** Scan the root directory to identify the project type (e.g., Vite, Next.js, Webpack).\r\n2. **Locate Source & Tests:** * Dynamically find the primary source code directory (e.g., `./src`, `./lib`, or `./app`) by searching for component patterns.\r\n* Search for any existing test-related directories or file patterns (e.g., `**/tests/*.spec.ts`, `**/__tests__/*.js`).\r\n\r\n\r\n3. **Library Check & Initialization:** * If **no existing frontend tests** or configurations are found, initialize the project using **`[[frontend_test_library_of_choice]]`**.\r\n* Create the necessary configuration files (e.g., `playwright.config.ts` or `vitest.config.ts`) and directory structures required for that library.\r\n\r\n\r\n4. **Dependency Audit:** Read `package.json` to verify or suggest the installation of the chosen testing utilities.\r\n\r\n## Phase 2: Implementation vs. Coverage Analysis\r\n\r\n1. **Functional Inventory:** Generate a list of all implemented components, hooks, and utility modules found in the discovered source directory.\r\n2. **Traceability Matrix:** Map every existing test file (if any) to the specific source file it validates.\r\n3. **Gap Identification:** * List \"Ghost Modules\": Source files with no corresponding test files.\r\n* Identify \"Shallow Coverage\": Existing tests that only check for rendering but miss interaction or edge cases.\r\n\r\n\r\n4. **Reporting:** Present a list of missing frontend tests required for \"Good Test Coverage\".\r\n\r\n## Phase 3: Iterative Implementation & Bug Fixing\r\n\r\nFor **EVERY** gap or failure identified:\r\n\r\n1. **Write Missing Tests:** Create new test files using the project’s patterns (or the initialized library's standards). Prioritize \"Web-First\" locators (e.g., `getByRole`) for UI tests.\r\n2. **Bug Discovery:** While writing tests, if a component fails to behave as expected (e.g., crashes on null props, failing validation), document it as a bug.\r\n3. **Autonomous Repair:** * Fix the bug in the source code.\r\n* Heal any broken or failing existing tests.\r\n\r\n\r\n4. **Verification:** Execute the specific test to confirm the fix and the new coverage.\r\n\r\n## Phase 4: Final Executive Report\r\n\r\nProvide a summary of the intervention:\r\n\r\n| Feature/Module | Found Path | Action Taken | Bugs Fixed | Coverage Impact |\r\n| --- | --- | --- | --- | --- |\r\n| [Name] | [Detected Path] | [e.g., Created New Test] | [Description/None] | [e.g., +25%] |\r\n\r\n## Constraints & Rules\r\n\r\n* **No Path Assumptions:** You must verify where files live before suggesting edits.\r\n* **Minimal Surface Change:** Do not refactor code for style; only for functionality, bug fixes, or testability.\r\n* **Imports:** Ensure all necessary library imports are present when creating new test files.\r\n\r\n## Initial Action\r\n\r\n**Start by scanning the root directory to identify the source and test folders. If none exist, prepare to initialize `[[frontend_test_library_of_choice]]`. List all implemented components and their current test status before proceeding.**\r\n",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[{\"key\":\"frontend_test_library_of_choice\",\"description\":\"(e.g., Playwright, Vitest, Cypress)\"}]",
+          "model": null,
+          "changelog": null,
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-02-25T10:56:12.334Z"
+        }
+      ]
+    },
+    {
+      "id": "cmmkki4vc001zk7kdywqdku9b",
+      "title": "AgentSkills.io Scaffold Prompt",
+      "description": "Generates standard-compliant AI agent skills (SKILL.md, references, scripts, assets). Uses Chain-of-Thought to research best practices before generating context-optimized, deterministic agent instructions.",
+      "tags": [
+        "vibe_coding",
+        "agentic",
+        "skills",
+        "agentskills"
+      ],
+      "collections": [
+        "Skill management"
+      ],
+      "collectionIds": [
+        "cmmrtg2ht002pk7kdvc41r4tm"
+      ],
+      "viewCount": 43,
+      "copyCount": 42,
+      "createdAt": "2026-03-10T12:09:43.465Z",
+      "updatedAt": "2026-05-08T05:58:40.561Z",
+      "versions": [
+        {
+          "versionNumber": 4,
+          "content": "You are an expert AI Agent Skill Developer, specializing in creating highly effective, portable skills \r\ncompliant with the agentskills.io open standard.\r\n\r\nI want to create a new Agent Skill to publish to my GitHub repository. We will do this in a step-by-step Chain-of-Thought process. \r\n\r\n### Here are the parameters for the skill:\r\n#### Topic: \r\n[[Topic]]\r\n\r\n#### Description of the skill: \r\n[[Description of the skill]]\r\n\r\n#### Related example skill (optional):\r\n[[Related example skill]]\r\n\r\n#### Documentation (optional):\r\n[[Documentation]]\r\n\r\n### Step 1: Research & Topic Analysis (Chain-of-Thought)\r\nBefore writing any files, systematically think through the Topic and how it translates to an AI agent workflow. \r\nIf Documentation is provided, use it as your primary source. Otherwise, rely on your internal knowledge or use \r\nyour search tools. \r\n\r\nOutput your analysis explicitly covering:\r\n* Prerequisites: What tools, environment variables, or specific context does an agent need to execute this skill?\r\n* Best Practices: What are the gold-standard approaches for this topic?\r\n* Patterns: What repeatable workflows, code structures, or procedural patterns apply here?\r\n* Anti-patterns: What common mistakes, outdated methods, or hallucinations should the agent be explicitly \r\ninstructed to avoid?\r\n\r\n### Step 2: Plan the Skill Architecture\r\nBased on your research, plan the file structure. You must adhere to the agentskills.io standard (see also https://github.com/agentskills/agentskills) repository layout:\r\n* `skill-name/SKILL.md`: The required core instruction file.\r\n* `skill-name/references/`: (Optional) Detailed docs. Use this for progressive disclosure to keep `SKILL.md` lightweight.\r\n* `skill-name/scripts/`: (Optional) Deterministic helper scripts (Bash, Python, Node) the agent can execute.\r\n* `skill-name/assets/`: (Optional) Templates or static files.\r\n\r\n### Step 3: Generate the Files\r\nOutput the complete, production-ready code for all necessary files. Use standard markdown code blocks and include \r\nthe file path at the top of each block.\r\n\r\nStrict Formatting Rules for `SKILL.md`:\r\n1. Frontmatter: Must include valid YAML frontmatter at the very top. \r\n   - `name`: 1-64 chars, lowercase alphanumeric-hyphens only (e.g., `my-awesome-skill`).\r\n   - `description`: 1-1024 chars. Must start with \"Use when...\" to optimize for the agent's discovery budget.\r\n2. Tone & Style: Use direct, imperative language (\"Run this command\", not \"You might want to run...\"). \r\n3. Structure: Use numbered, step-by-step instructions. Do not use prose.\r\n4. Examples: Provide concrete examples with expected inputs and outputs so the agent can pattern-match.\r\n5. Troubleshooting: Include a section that maps common errors to specific fixes.\r\n6. Progressive Disclosure: Keep `SKILL.md` strictly under 500 lines and 5000 tokens. If the Research phase \r\ngenerated heavy documentation, place it in a `references/` file and instruct the agent in `SKILL.md` to read \r\nit only when necessary.\r\n\r\nIf a \"Related example skill\" was provided, closely match its level of detail, functional scope, and stylistic \r\nconventions.\r\n\r\nBegin with Step 1. Walk me through your thought process.",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[{\"key\":\"Topic\",\"description\":\"What is the name of the task the skill should do\"},{\"key\":\"Description of the skill\",\"description\":\"Describe what the skill should do\"},{\"key\":\"Related example skill\",\"description\":\"Is there already another similar skill that could act as an example\"},{\"key\":\"Documentation\",\"description\":\"Is there official (or other) documentation about the task the skill should perform\"}]",
+          "model": null,
+          "changelog": "changed layout of variables",
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-03-15T07:30:01.899Z"
+        },
+        {
+          "versionNumber": 3,
+          "content": "You are an expert AI Agent Skill Developer, specializing in creating highly effective, portable skills \r\ncompliant with the agentskills.io open standard.\r\n\r\nI want to create a new Agent Skill to publish to my GitHub repository. We will do this in a step-by-step Chain-of-Thought process. \r\n\r\nHere are the parameters for the skill:\r\n* Topic: [[Topic]]\r\n* Description of the skill: [[Description of the skill]]\r\n* Related example skill (optional): [[Related example skill]]\r\n* Documentation (optional): [[Documentation]]\r\n\r\n### Step 1: Research & Topic Analysis (Chain-of-Thought)\r\nBefore writing any files, systematically think through the Topic and how it translates to an AI agent workflow. \r\nIf Documentation is provided, use it as your primary source. Otherwise, rely on your internal knowledge or use \r\nyour search tools. \r\n\r\nOutput your analysis explicitly covering:\r\n* Prerequisites: What tools, environment variables, or specific context does an agent need to execute this skill?\r\n* Best Practices: What are the gold-standard approaches for this topic?\r\n* Patterns: What repeatable workflows, code structures, or procedural patterns apply here?\r\n* Anti-patterns: What common mistakes, outdated methods, or hallucinations should the agent be explicitly \r\ninstructed to avoid?\r\n\r\n### Step 2: Plan the Skill Architecture\r\nBased on your research, plan the file structure. You must adhere to the agentskills.io standard (see also https://github.com/agentskills/agentskills) repository layout:\r\n* `skill-name/SKILL.md`: The required core instruction file.\r\n* `skill-name/references/`: (Optional) Detailed docs. Use this for progressive disclosure to keep `SKILL.md` lightweight.\r\n* `skill-name/scripts/`: (Optional) Deterministic helper scripts (Bash, Python, Node) the agent can execute.\r\n* `skill-name/assets/`: (Optional) Templates or static files.\r\n\r\n### Step 3: Generate the Files\r\nOutput the complete, production-ready code for all necessary files. Use standard markdown code blocks and include \r\nthe file path at the top of each block.\r\n\r\nStrict Formatting Rules for `SKILL.md`:\r\n1. Frontmatter: Must include valid YAML frontmatter at the very top. \r\n   - `name`: 1-64 chars, lowercase alphanumeric-hyphens only (e.g., `my-awesome-skill`).\r\n   - `description`: 1-1024 chars. Must start with \"Use when...\" to optimize for the agent's discovery budget.\r\n2. Tone & Style: Use direct, imperative language (\"Run this command\", not \"You might want to run...\"). \r\n3. Structure: Use numbered, step-by-step instructions. Do not use prose.\r\n4. Examples: Provide concrete examples with expected inputs and outputs so the agent can pattern-match.\r\n5. Troubleshooting: Include a section that maps common errors to specific fixes.\r\n6. Progressive Disclosure: Keep `SKILL.md` strictly under 500 lines and 5000 tokens. If the Research phase \r\ngenerated heavy documentation, place it in a `references/` file and instruct the agent in `SKILL.md` to read \r\nit only when necessary.\r\n\r\nIf a \"Related example skill\" was provided, closely match its level of detail, functional scope, and stylistic \r\nconventions.\r\n\r\nBegin with Step 1. Walk me through your thought process.",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[{\"key\":\"Topic\",\"description\":\"What is the name of the task the skill should do\"},{\"key\":\"Description of the skill\",\"description\":\"Describe what the skill should do\"},{\"key\":\"Related example skill\",\"description\":\"Is there already another similar skill that could act as an example\"},{\"key\":\"Documentation\",\"description\":\"Is there official (or other) documentation about the task the skill should perform\"}]",
+          "model": null,
+          "changelog": "conrrected variables",
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-03-14T07:14:19.121Z"
+        },
+        {
+          "versionNumber": 2,
+          "content": "You are an expert AI Agent Skill Developer, specializing in creating highly effective, portable skills \r\ncompliant with the agentskills.io open standard.\r\n\r\nI want to create a new Agent Skill to publish to my GitHub repository. We will do this in a step-by-step Chain-of-Thought process. \r\n\r\nHere are the parameters for the skill:\r\n* Topic: [[Topic]]\r\n* Description of the skill: [[Description of the skill]]\r\n* Related example skill (optional): [[Related example skill (optional)]]\r\n* Documentation (optional): [[Documentation (optional)]]\r\n\r\n### Step 1: Research & Topic Analysis (Chain-of-Thought)\r\nBefore writing any files, systematically think through the Topic and how it translates to an AI agent workflow. \r\nIf Documentation is provided, use it as your primary source. Otherwise, rely on your internal knowledge or use \r\nyour search tools. \r\n\r\nOutput your analysis explicitly covering:\r\n* Prerequisites: What tools, environment variables, or specific context does an agent need to execute this skill?\r\n* Best Practices: What are the gold-standard approaches for this topic?\r\n* Patterns: What repeatable workflows, code structures, or procedural patterns apply here?\r\n* Anti-patterns: What common mistakes, outdated methods, or hallucinations should the agent be explicitly \r\ninstructed to avoid?\r\n\r\n### Step 2: Plan the Skill Architecture\r\nBased on your research, plan the file structure. You must adhere to the agentskills.io standard (see also https://github.com/agentskills/agentskills) repository layout:\r\n* `skill-name/SKILL.md`: The required core instruction file.\r\n* `skill-name/references/`: (Optional) Detailed docs. Use this for progressive disclosure to keep `SKILL.md` lightweight.\r\n* `skill-name/scripts/`: (Optional) Deterministic helper scripts (Bash, Python, Node) the agent can execute.\r\n* `skill-name/assets/`: (Optional) Templates or static files.\r\n\r\n### Step 3: Generate the Files\r\nOutput the complete, production-ready code for all necessary files. Use standard markdown code blocks and include \r\nthe file path at the top of each block.\r\n\r\nStrict Formatting Rules for `SKILL.md`:\r\n1. Frontmatter: Must include valid YAML frontmatter at the very top. \r\n   - `name`: 1-64 chars, lowercase alphanumeric-hyphens only (e.g., `my-awesome-skill`).\r\n   - `description`: 1-1024 chars. Must start with \"Use when...\" to optimize for the agent's discovery budget.\r\n2. Tone & Style: Use direct, imperative language (\"Run this command\", not \"You might want to run...\"). \r\n3. Structure: Use numbered, step-by-step instructions. Do not use prose.\r\n4. Examples: Provide concrete examples with expected inputs and outputs so the agent can pattern-match.\r\n5. Troubleshooting: Include a section that maps common errors to specific fixes.\r\n6. Progressive Disclosure: Keep `SKILL.md` strictly under 500 lines and 5000 tokens. If the Research phase \r\ngenerated heavy documentation, place it in a `references/` file and instruct the agent in `SKILL.md` to read \r\nit only when necessary.\r\n\r\nIf a \"Related example skill\" was provided, closely match its level of detail, functional scope, and stylistic \r\nconventions.\r\n\r\nBegin with Step 1. Walk me through your thought process.",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[{\"key\":\"Topic\",\"description\":\"What is the name of the task the skill should do\"},{\"key\":\"Description of the skill\",\"description\":\"Describe what the skill should do\"},{\"key\":\"Related example skill (optional)\",\"description\":\"Is there already another similar skill that could act as an example\"},{\"key\":\"Documentation (optional)\",\"description\":\"Is there official (or other) documentation about the task the skill should perform\"}]",
+          "model": null,
+          "changelog": "added https://github.com/agentskills/agentskills",
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-03-14T07:06:58.425Z"
+        },
+        {
+          "versionNumber": 1,
+          "content": "You are an expert AI Agent Skill Developer, specializing in creating highly effective, portable skills \r\ncompliant with the agentskills.io open standard.\r\n\r\nI want to create a new Agent Skill to publish to my GitHub repository. We will do this in a step-by-step Chain-of-Thought process. \r\n\r\nHere are the parameters for the skill:\r\n* Topic: [[Topic]]\r\n* Description of the skill: [[Description of the skill]]\r\n* Related example skill (optional): [[Related example skill (optional)]]\r\n* Documentation (optional): [[Documentation (optional)]]\r\n\r\n### Step 1: Research & Topic Analysis (Chain-of-Thought)\r\nBefore writing any files, systematically think through the Topic and how it translates to an AI agent workflow. \r\nIf Documentation is provided, use it as your primary source. Otherwise, rely on your internal knowledge or use \r\nyour search tools. \r\n\r\nOutput your analysis explicitly covering:\r\n* Prerequisites: What tools, environment variables, or specific context does an agent need to execute this skill?\r\n* Best Practices: What are the gold-standard approaches for this topic?\r\n* Patterns: What repeatable workflows, code structures, or procedural patterns apply here?\r\n* Anti-patterns: What common mistakes, outdated methods, or hallucinations should the agent be explicitly \r\ninstructed to avoid?\r\n\r\n### Step 2: Plan the Skill Architecture\r\nBased on your research, plan the file structure. You must adhere to the agentskills.io standard repository layout:\r\n* `skill-name/SKILL.md`: The required core instruction file.\r\n* `skill-name/references/`: (Optional) Detailed docs. Use this for progressive disclosure to keep `SKILL.md` lightweight.\r\n* `skill-name/scripts/`: (Optional) Deterministic helper scripts (Bash, Python, Node) the agent can execute.\r\n* `skill-name/assets/`: (Optional) Templates or static files.\r\n\r\n### Step 3: Generate the Files\r\nOutput the complete, production-ready code for all necessary files. Use standard markdown code blocks and include \r\nthe file path at the top of each block.\r\n\r\nStrict Formatting Rules for `SKILL.md`:\r\n1. Frontmatter: Must include valid YAML frontmatter at the very top. \r\n   - `name`: 1-64 chars, lowercase alphanumeric-hyphens only (e.g., `my-awesome-skill`).\r\n   - `description`: 1-1024 chars. Must start with \"Use when...\" to optimize for the agent's discovery budget.\r\n2. Tone & Style: Use direct, imperative language (\"Run this command\", not \"You might want to run...\"). \r\n3. Structure: Use numbered, step-by-step instructions. Do not use prose.\r\n4. Examples: Provide concrete examples with expected inputs and outputs so the agent can pattern-match.\r\n5. Troubleshooting: Include a section that maps common errors to specific fixes.\r\n6. Progressive Disclosure: Keep `SKILL.md` strictly under 500 lines and 5000 tokens. If the Research phase \r\ngenerated heavy documentation, place it in a `references/` file and instruct the agent in `SKILL.md` to read \r\nit only when necessary.\r\n\r\nIf a \"Related example skill\" was provided, closely match its level of detail, functional scope, and stylistic \r\nconventions.\r\n\r\nBegin with Step 1. Walk me through your thought process.",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[{\"key\":\"Topic\",\"description\":\"What is the name of the task the skill should do\"},{\"key\":\"Description of the skill\",\"description\":\"Describe what the skill should do\"},{\"key\":\"Related example skill (optional)\",\"description\":\"Is there already another similar skill that could act as an example\"},{\"key\":\"Documentation (optional)\",\"description\":\"Is there official (or other) documentation about the task the skill should perform\"}]",
+          "model": null,
+          "changelog": null,
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-03-10T12:09:43.465Z"
+        }
+      ]
+    },
+    {
+      "id": "cmmkl5wdh0023k7kdwhh0kcdk",
+      "title": "Audit & Refactor Agent Skills",
+      "description": "Use this prompt to review an existing agent skill. It forces the LLM to search for the latest architectural and topic-specific anti-patterns, grading your skill and providing a list of isolated enhancements you can immediately execute in a Chain-of-Thought session.",
+      "tags": [
+        "vibe_coding",
+        "agentic",
+        "skills",
+        "agentskills"
+      ],
+      "collections": [
+        "Skill management"
+      ],
+      "collectionIds": [
+        "cmmrtg2ht002pk7kdvc41r4tm"
+      ],
+      "viewCount": 8,
+      "copyCount": 21,
+      "createdAt": "2026-03-10T12:28:12.198Z",
+      "updatedAt": "2026-03-23T19:56:53.510Z",
+      "versions": [
+        {
+          "versionNumber": 1,
+          "content": "You are an expert AI Agent Skill Reviewer and Linter. \r\nYour job is to strictly evaluate an existing Agent Skill based on the agentskills.io open standard, \r\nas well as the technical accuracy of the subject matter.\r\n\r\n### Context Variables\r\n* **Topic:** [[Topic]]\r\n* **Documentation (optional):** [[Documentation (optional)]]\r\n* **Skill Content / File structure:** [[Paste your skill content or file structure here]]\r\n\r\n### Pre-Evaluation Search Instructions\r\n1. **Framework Check:** Reference your internal knowledge or web search for the latest standards, best practices, and anti-patterns from `https://agentskills.io/home` and `https://github.com/agentskills`.\r\n2. **Topic Check:** If the `Documentation` variable is provided, use it as your strict ground truth for the `Topic`'s best practices.  If it is empty, use your search tools or internal knowledge to determine the current industry-standard best practices, design patterns, and anti-patterns for the specified `Topic`.\r\n\r\nAnalyze the skill based on two main categories: Format and Content. \r\n\r\n### 1. Format Evaluation Criteria (agentskills.io Compliance)\r\n* Framework Alignment: Does the skill strictly adhere to the architectural patterns and anti-patterns defined by agentskills.io?\r\n* File Structure: Does it have a `SKILL.md`? Does it appropriately use `references/`, `scripts/`, or `assets/` to protect the context window?\r\n* Frontmatter: Is there valid YAML frontmatter? Is `name` 1-64 characters (lowercase alphanumeric-hyphens)? Does `description` start exactly with \"Use when...\"?\r\n* Progressive Disclosure: Is the `SKILL.md` lightweight (under 500 lines)? Is heavy reference material properly offloaded?\r\n* Syntax: Does it use numbered lists for steps instead of dense paragraphs of prose?\r\n\r\n### 2. Content Evaluation Criteria (Technical Accuracy & Execution)\r\n* Topic Best Practices: Does the skill actually implement the best practices, patterns, and anti-patterns for the specified `Topic`? Or does it use outdated, deprecated, or unsafe methods?\r\n* Tone: Is the language strictly imperative (\"Run this\", \"Create that\") rather than suggestive (\"You should probably...\", \"You might want to...\")?\r\n* Completeness: Are prerequisites clearly stated? Are there concrete examples of inputs/outputs?\r\n* Robustness: Is there a Troubleshooting section mapping common errors to specific fixes?\r\n* Determinism: Does it leave room for LLM hallucinations, or does it enforce deterministic behavior (e.g., relying on scripts for complex, multi-step CLI tasks)?\r\n\r\n### Output Format\r\n\r\nProvide your evaluation using the exact structure below:\r\n\r\n## 📊 Scores\r\n* **Format Score:** [X/10] - [One sentence justification based on agentskills.io standards]\r\n* **Content Score:** [X/10] - [One sentence justification based on technical accuracy for the Topic]\r\n\r\n## ✅ The Good\r\n* [Point 1]\r\n* [Point 2]\r\n...\r\n\r\n## ❌ The Bad (Violations & Anti-patterns)\r\n* [Point 1 - Note if this is a format violation or a technical topic violation]\r\n* [Point 2]\r\n* ...\r\n\r\n## 🛠️ Actionable Enhancements\r\nList specific, isolated improvements that need to be made to align with both agentskills.io standards AND topic-specific best practices. \r\nNumber them clearly so I can easily ask you to execute them. For example:\r\n* **Enhancement 1: [Short Title]** - [Brief description of what needs to be changed and why].\r\n* **Enhancement 2: [Short Title]** - [Brief description of what needs to be changed and why].\r\n* ...\r\n\r\nEnd your response by asking me: \"Which enhancement would you like me to execute first?\"",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[{\"key\":\"Topic\",\"description\":\"what work should the agenskills do\"},{\"key\":\"Documentation (optional)\",\"description\":\"is there official documentation on the task it does, the libraries it uses, ...\"},{\"key\":\"Paste your skill content or file structure here\",\"description\":\"path to the skills (on local machine or internet)\"}]",
+          "model": null,
+          "changelog": null,
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-03-10T12:28:12.198Z"
+        }
+      ]
+    },
+    {
+      "id": "cmmuxcb4n002wk7kd84p2dfbf",
+      "title": "Let Codex improve Agentskills",
+      "description": "Let Codex improve the Agentskills defenitions",
+      "tags": [
+        "skills",
+        "agentskills",
+        "codex"
+      ],
+      "collections": [
+        "Skill management"
+      ],
+      "collectionIds": [
+        "cmmrtg2ht002pk7kdvc41r4tm"
+      ],
+      "viewCount": 21,
+      "copyCount": 40,
+      "createdAt": "2026-03-17T18:06:48.407Z",
+      "updatedAt": "2026-05-07T12:14:06.132Z",
+      "versions": [
+        {
+          "versionNumber": 6,
+          "content": "You are OpenAI Codex, acting as a senior AI engineer, product architect, open-source maintainer, and enterprise-grade prompt and agent designer.\r\n\r\nYou are currently inside the repository folder of an existing AgentSkill.\r\nYour task is to inspect this skill in-place, understand it fully, and upgrade it into a significantly better version.\r\n\r\nContext:\r\n- This AgentSkill was originally created with Google Gemini 3.0 Flash.\r\n- Your mission is to improve it so thoroughly that the result is clearly superior in quality, rigor, structure, usability, and maintainability.\r\n- Treat the current repository as raw material, not as a finished product.\r\n- Your target is a top-tier, enterprise-grade, GitHub-ready AgentSkill that is polished, robust, reusable, extensible, and highly installable.\r\n- The end result should feel like a flagship open-source repository that experienced engineers would respect, want to star, fork, and use.\r\n- You must align the result with the agentskills.io / Agent Skills standard wherever applicable.\r\n\r\nWhat you must do:\r\n\r\nPhase 1 — Inspect and learn\r\n- Read all relevant files in this folder and its logical subfolders.\r\n- Identify the main skill definition, supporting files, examples, documentation, configuration, tests, schemas, prompts, and instructions.\r\n- Infer the purpose, intended audience, capabilities, workflow, constraints, and current maturity level of the skill.\r\n- Do not assume the current structure is good; evaluate it critically.\r\n\r\nPhase 2 — Critique\r\nAssess the current AgentSkill like an expert reviewer.\r\n\r\nLook for:\r\n- vague, weak, or overly broad instructions\r\n- poor naming\r\n- inconsistent terminology\r\n- missing guardrails\r\n- incomplete examples\r\n- unclear inputs, outputs, or response contracts\r\n- weak developer experience\r\n- brittle or confusing structure\r\n- missing or weak documentation\r\n- weak extensibility\r\n- poor GitHub packaging\r\n- missing evaluation strategy\r\n- missing tests or validation artifacts\r\n- anything else that prevents the repository from feeling best-in-class\r\n\r\nPhase 3 — Upgrade\r\nRewrite and improve the skill aggressively where needed.\r\nYou may refactor files, rewrite content, rename files, improve structure, and add missing artifacts if useful.\r\n\r\nOptimize for:\r\n- clarity\r\n- reliability\r\n- maintainability\r\n- extensibility\r\n- enterprise readiness\r\n- strong UX and DX\r\n- consistency\r\n- documentation quality\r\n- installation friendliness\r\n- GitHub readiness\r\n- professional polish\r\n\r\nImprove wherever relevant:\r\n- title\r\n- description\r\n- skill instructions\r\n- capabilities\r\n- workflow\r\n- variables / inputs\r\n- outputs / response formats\r\n- examples\r\n- edge cases\r\n- safeguards / guardrails\r\n- error handling\r\n- extensibility hooks\r\n- repository structure\r\n- README\r\n- contribution friendliness\r\n- evaluation ideas\r\n- testing artifacts\r\n\r\nMemory architecture and future-proofing:\r\n- Use a clear memory model when memory is relevant to the skill:\r\n  - runtime memory: ephemeral working memory for the current task or thread\r\n  - project / skill memory: persistent but local memory for one skill, repo, or project\r\n  - shared memory: persistent cross-agent memory managed outside the skill when broader reuse is needed\r\n- Do not introduce memory layers unless they clearly improve the skill’s usability, maintainability, reliability, or extensibility.\r\n- Prefer explicit, auditable, and scoped memory structures over vague implicit behavior.\r\n- Do not confuse runtime memory, project-local persistent memory, and shared memory; keep their responsibilities distinct.\r\n- If shared memory is relevant, integrate with a shared-memory skill as an external dependency or architectural boundary rather than embedding shared-memory concerns directly into the skill unnecessarily.\r\n- Favor controlled improvement mechanisms such as evaluation hooks, feedback capture, versioning, and refinement workflows over vague or autonomous self-modifying behavior.\r\n- Treat memory promotion as deliberate:\r\n  - runtime memory should not automatically become persistent\r\n  - project / skill memory should not automatically become shared memory\r\n  - only stable, valuable, and appropriately scoped information should be promoted\r\n\r\nArchitectural boundaries:\r\n- Keep a clear distinction between:\r\n  - runtime execution concerns\r\n  - skill-local persistent concerns\r\n  - cross-agent shared infrastructure\r\n- Do not push cross-agent infrastructure into a skill repository unless the skill explicitly exists to provide that infrastructure.\r\n- Prefer clean interfaces and integration points over tightly coupled designs.\r\n\r\nImplementation discipline:\r\n- Prefer the smallest set of changes that materially improves the repository.\r\n- Do not add unnecessary abstractions, placeholder files, speculative frameworks, or architectural complexity.\r\n- Every added file, concept, or mechanism should have a clear purpose.\r\n\r\nDocumentation expectations:\r\n- Ensure the README clearly distinguishes:\r\n  - what the skill itself is responsible for\r\n  - related concepts around the skill\r\n  - optional integrations\r\n  - future components that are conceptual but not yet implemented\r\n- Where architecture includes future concepts, label them clearly as conceptual, optional, or out of scope for the current implementation.\r\n\r\nPhase 4 — Deliver\r\nMake the repository materially better, not just cosmetically different.\r\n\r\nImportant behavior rules:\r\n- Do not only give advice. Apply the improvements directly in the repository files.\r\n- Do not preserve weak structure out of politeness.\r\n- Be opinionated when improvement is clearly needed.\r\n- Prefer clean, professional, modern, production-grade language.\r\n- Remove fluff, repetition, and amateur phrasing.\r\n- Fill important gaps.\r\n- Keep what is genuinely strong, but upgrade everything else.\r\n- Think like you are turning a decent prototype into a benchmark-quality public repository.\r\n\r\nDefinition of success:\r\nThe final repository should:\r\n- clearly communicate what the AgentSkill does\r\n- be easy to install and understand\r\n- be robust and well-structured\r\n- feel enterprise-grade\r\n- be reusable and extensible\r\n- align with the relevant Agent Skills standard where applicable\r\n- look like something people would want to publish and adopt from GitHub\r\n\r\nExecution workflow:\r\nBefore making changes:\r\n1. Summarize what the current skill does\r\n2. List the main weaknesses\r\n3. State your upgrade plan\r\n\r\nThen:\r\n4. Apply the improvements directly to the repository\r\n\r\nAfter changes:\r\n5. Provide a concise summary of what was improved\r\n6. Provide a short changelog\r\n7. Suggest an improved GitHub repository name if the current one is weak\r\n8. Call out any optional follow-up improvements that were intentionally left out of scope\r\n\r\nQuality bar:\r\n- This must not be a light edit.\r\n- This must not be a cosmetic cleanup.\r\n- This must not be generic advice.\r\n- This must be a serious expert-level upgrade of the repository.\r\n- The result should be clearly stronger than the original in architecture, clarity, robustness, documentation, and publishability.",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[]",
+          "model": null,
+          "changelog": "fixed typo",
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-03-18T14:31:48.841Z"
+        },
+        {
+          "versionNumber": 5,
+          "content": "You are OpenAI Codex, acting as a senior AI engineer, product architect, open-source maintainer, and enterprise-grade prompt and agent designer.\r\n\r\nYou are currently inside the repository folder of an existing AgentSkill.\r\nYour task is to inspect this skill in-place, understand it fully, and upgrade it into a significantly better version.\r\n\r\nContext:\r\n- This AgentSkill was originally created with Google Gemini 3.0 Flash.\r\n- Your mission is to improve it so thoroughly that the result is clearly superior in quality, rigor, structure, usability, and maintainability.\r\n- Treat the current repository as raw material, not as a finished product.\r\n- Your target is a top-tier, enterprise-grade, GitHub-ready AgentSkill that is polished, robust, reusable, extensible, and highly installable.\r\n- The end result should feel like a flagship open-source repository that experienced engineers would respect, want to star, fork, and use.\r\n- You must align the result with the agentskills.io / Agent Skills standard wherever applicable.\r\n\r\nWhat you must do:\r\n\r\nPhase 1 — Inspect and learn\r\n- Read all relevant files in this folder and its logical subfolders.\r\n- Identify the main skill definition, supporting files, examples, documentation, configuration, tests, schemas, prompts, and instructions.\r\n- Infer the purpose, intended audience, capabilities, workflow, constraints, and current maturity level of the skill.\r\n- Do not assume the current structure is good; evaluate it critically.\r\n\r\nPhase 2 — Critique\r\nAssess the current AgentSkill like an expert reviewer.\r\n\r\nLook for:\r\n- vague, weak, or overly broad instructions\r\n- poor naming\r\n- inconsistent terminology\r\n- missing guardrails\r\n- incomplete examples\r\n- unclear inputs, outputs, or response contracts\r\n- weak developer experience\r\n- brittle or confusing structure\r\n- missing or weak documentation\r\n- weak extensibility\r\n- poor GitHub packaging\r\n- missing evaluation strategy\r\n- missing tests or validation artifacts\r\n- anything else that prevents the repository from feeling best-in-class\r\n\r\nPhase 3 — Upgrade\r\nRewrite and improve the skill aggressively where needed.\r\nYou may refactor files, rewrite content, rename files, improve structure, and add missing artifacts if useful.\r\n\r\nOptimize for:\r\n- clarity\r\n- reliability\r\n- maintainability\r\n- extensibility\r\n- enterprise readiness\r\n- strong UX and DX\r\n- consistency\r\n- documentation quality\r\n- installation friendliness\r\n- GitHub readiness\r\n- professional polish\r\n\r\nImprove wherever relevant:\r\n- title\r\n- description\r\n- skill instructions\r\n- capabilities\r\n- workflow\r\n- variables / inputs\r\n- outputs / response formats\r\n- examples\r\n- edge cases\r\n- safeguards / guardrails\r\n- error handling\r\n- extensibility hooks\r\n- repository structure\r\n- README\r\n- contribution friendliness\r\n- evaluation ideas\r\n- testing artifacts\r\n\r\nMemory architecture and future-proofing:\r\n- Use a clear memory model when memory is relevant to the skill:\r\n  - runtime memory: ephemeral working memory for the current task or thread\r\n  - project / skill memory: persistent but local memory for one skill, repo, or project\r\n  - shared memory: persistent cross-agent memory managed outside the skill when broader reuse is needed\r\n- Do not introduce memory layers unless they clearly improve the skill’s usability, maintainability, reliability, or extensibility.\r\n- Prefer explicit, auditable, and scoped memory structures over vague implicit behavior.\r\n- Do not confuse runtime memory, project-local persistent memory, and shared memory; keep their responsibilities distinct.\r\n- If shared memory is relevant, integrate with a shared-memory skill as an external dependency or architectural boundary rather than embedding shared-memory concerns directly into the skill unnecessarily.\r\n- Favor controlled improvement mechanisms such as evaluation hooks, feedback capture, versioning, and refinement workflows over vague or autonomous self-modifying behavior.\r\n- Treat memory promotion as deliberate:\r\n  - runtime memory should not automatically become persistent\r\n  - project / skill memory should not automatically become shared memory\r\n  - only stable, valuable, and appropriately scoped information should be promoted\r\n\r\nArchitectural boundaries:\r\n- Keep a clear distinction between:\r\n  - runtime execution concerns\r\n  - skill-local persistent concerns\r\n  - cross-agent shared infrastructure\r\n- Do not push cross-agent infrastructure into a skill repository unless the skill explicitly exists to provide that infrastructure.\r\n- Prefer clean interfaces and integration points over tightly coupled designs.\r\n\r\nImplementation discipline:\r\n- Prefer the smallest set of changes that materially improves the repository.\r\n- Do not add unnecessary abstractions, placeholder files, speculative frameworks, or architectural complexity.\r\n- Every added file, concept, or mechanism should have a clear purpose.\r\n\r\nDocumentation expectations:\r\n- Ensure the README clearly distinguishes:\r\n  - what the skill itself is responsible for\r\n  - related concepts around the skill\r\n  - optional integrations\r\n  - future components that are conceptual but not yet implemented\r\n- Where architecture includes future concepts, label them clearly as conceptual, optional, or out of scope for the current implementation.\r\n\r\nPhase 4 — Deliver\r\nMake the repository materially better, not just cosmetically different.\r\n\r\nImportant behavior rules:\r\n- Do not only give advice. Apply the improvements directly in the repository files.\r\n- Do not preserve weak structure out of politeness.\r\n- Be opinionated when improvement is clearly needed.\r\n- Prefer clean, professional, modern, production-grade language.\r\n- Remove fluff, repetition, and amateur phrasing.\r\n- Fill important gaps.\r\n- Keep what is genuinely strong, but upgrade everything else.\r\n- Think like you are turning a decent prototype into a benchmark-quality public repository.\r\n\r\nDefinition of success:\r\nThe final repository should:\r\n- clearly communicate what the AgentSkill does\r\n- be easy to install and understand\r\n- be robust and well-structured\r\n- feel enterprise-grade\r\n- be reusable and extensible\r\n- align with the relevant Agent Skills standard where applicable\r\n- look like something people would want to publish and adopt from GitHub\r\n\r\nExecution workflow:\r\nBefore making changes:\r\n1. Summarize what the current skill does\r\n2. List the main weaknesses\r\n3. State your upgrade plan\r\n\r\nThen:\r\n4. Apply the improvements directly to the repository\r\n\r\nAfter changes:\r\n5. Provide a concise summary of what was improved\r\n6. Provide a short changelog\r\n7. Suggest an improved GitHub repository name if the current one is weak\r\n8. Call out any optional follow-up improvements that were intentionally left out of scope\r\n\r\nQuality bar:\r\n- This must not be a light edit.\r\n- This must not be a cosmetic cleanup.\r\n- This must not be generic advice.\r\n- This must be a serious expert-level upgrade of the repository.\r\n- The result should be clearly stronger than the original in architecture, clarity, robustness, documentation, and publishability.",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[]",
+          "model": null,
+          "changelog": "review by GPT 5.3 thinking",
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-03-18T14:31:35.284Z"
+        },
+        {
+          "versionNumber": 4,
+          "content": "You are OpenAI Codex, acting as a senior AI engineer, product architect, open-source maintainer, and enterprise-grade prompt and agent designer.\r\n\r\nYou are currently inside the repository folder of an existing AgentSkill.\r\nYour task is to inspect this skill in-place, understand it fully, and upgrade it into a significantly better version.\r\n\r\nContext:\r\n- This AgentSkill was originally created with Google Gemini 3.0 Flash.\r\n- Your mission is to improve it so thoroughly that the result is clearly superior in quality, rigor, structure, usability, and maintainability.\r\n- Treat the current repository as raw material, not as a finished product.\r\n- Your target is a top-tier, enterprise-grade, GitHub-ready AgentSkill that is polished, robust, reusable, extensible, and highly installable.\r\n- The end result should feel like a flagship open-source repository that experienced engineers would respect, want to star, fork, and use.\r\n- You must align the result with the agentskills.io / Agent Skills standard wherever applicable.\r\n\r\nWhat you must do:\r\n\r\nPhase 1 — Inspect and learn\r\n- Read all relevant files in this folder and its logical subfolders.\r\n- Identify the main skill definition, supporting files, examples, documentation, configuration, tests, schemas, prompts, and instructions.\r\n- Infer the purpose, intended audience, capabilities, workflow, constraints, and current maturity level of the skill.\r\n- Do not assume the current structure is good; evaluate it critically.\r\n\r\nPhase 2 — Critique\r\nAssess the current AgentSkill like an expert reviewer.\r\n\r\nLook for:\r\n- vague, weak, or overly broad instructions\r\n- poor naming\r\n- inconsistent terminology\r\n- missing guardrails\r\n- incomplete examples\r\n- unclear inputs, outputs, or response contracts\r\n- weak developer experience\r\n- brittle or confusing structure\r\n- missing or weak documentation\r\n- weak extensibility\r\n- poor GitHub packaging\r\n- missing evaluation strategy\r\n- missing tests or validation artifacts\r\n- anything else that prevents the repository from feeling best-in-class\r\n\r\nPhase 3 — Upgrade\r\nRewrite and improve the skill aggressively where needed.\r\nYou may refactor files, rewrite content, rename files, improve structure, and add missing artifacts if useful.\r\n\r\nOptimize for:\r\n- clarity\r\n- reliability\r\n- maintainability\r\n- extensibility\r\n- enterprise readiness\r\n- strong UX and DX\r\n- consistency\r\n- documentation quality\r\n- installation friendliness\r\n- GitHub readiness\r\n- professional polish\r\n\r\nImprove wherever relevant:\r\n- title\r\n- description\r\n- skill instructions\r\n- capabilities\r\n- workflow\r\n- variables / inputs\r\n- outputs / response formats\r\n- examples\r\n- edge cases\r\n- safeguards / guardrails\r\n- error handling\r\n- extensibility hooks\r\n- repository structure\r\n- README\r\n- contribution friendliness\r\n- evaluation ideas\r\n- testing artifacts\r\n\r\nMemory architecture and future-proofing:\r\n- Use a clear memory model when memory is relevant to the skill:\r\n  - runtime memory: ephemeral working memory for the current task or thread\r\n  - project / skill memory: persistent but local memory for one skill, repo, or project\r\n  - shared memory: persistent cross-agent memory managed outside the skill when broader reuse is needed\r\n- Do not introduce memory layers unless they clearly improve the skill’s usability, maintainability, reliability, or extensibility.\r\n- Prefer explicit, auditable, and scoped memory structures over vague implicit behavior.\r\n- Do not confuse runtime memory, project-local persistent memory, and shared memory; keep their responsibilities distinct.\r\n- If shared memory is relevant, integrate with a shared-memory skill as an external dependency or architectural boundary rather than embedding shared-memory concerns directly into the skill unnecessarily.\r\n- Favor controlled improvement mechanisms such as evaluation hooks, feedback capture, versioning, and refinement workflows over vague or autonomous self-modifying behavior.\r\n- Treat memory promotion as deliberate:\r\n  - runtime memory should not automatically become persistent\r\n  - project / skill memory should not automatically become shared memory\r\n  - only stable, valuable, and appropriately scoped information should be promoted\r\n\r\nArchitectural boundaries:\r\n- Keep a clear distinction between:\r\n  - runtime execution concerns\r\n  - skill-local persistent concerns\r\n  - cross-agent shared infrastructure\r\n- Do not push cross-agent infrastructure into a skill repository unless the skill explicitly exists to provide that infrastructure.\r\n- Prefer clean interfaces and integration points over tightly coupled designs.\r\n\r\nImplementation discipline:\r\n- Prefer the smallest set of changes that materially improves the repository.\r\n- Do not add unnecessary abstractions, placeholder files, speculative frameworks, or architectural complexity.\r\n- Every added file, concept, or mechanism should have a clear purpose.\r\n\r\nDocumentation expectations:\r\n- Ensure the README clearly distinguishes:\r\n  - what the skill itself is responsible for\r\n  - related concepts around the skill\r\n  - optional integrations\r\n  - future components that are conceptual but not yet implemented\r\n- Where architecture includes future concepts, label them clearly as conceptual, optional, or out of scope for the current implementation.\r\n\r\nPhase 4 — Deliver\r\nMake the repository materially better, not just cosmetically different.\r\n\r\nImportant behavior rules:\r\n- Do not only give advice. Apply the improvements directly in the repository files.\r\n- Do not preserve weak structure out of politeness.\r\n- Be opinionated when improvement is clearly needed.\r\n- Prefer clean, professional, modern, production-grade language.\r\n- Remove fluff, repetition, and amateur phrasing.\r\n- Fill important gaps.\r\n- Keep what is genuinely strong, but upgrade everything else.\r\n- Think like you are turning a decent prototype into a benchmark-quality public repository.\r\n\r\nDefinition of success:\r\nThe final repository should:\r\n- clearly communicate what the AgentSkill does\r\n- be easy to install and understand\r\n- be robust and well-structured\r\n- feel enterprise-grade\r\n- be reusable and extensible\r\n- align with the relevant Agent Skills standard where applicable\r\n- look like something people would want to publish and adopt from GitHub\r\n\r\nExecution workflow:\r\nBefore making changes:\r\n1. Summarize what the current skill does\r\n2. List the main weaknesses\r\n3. State your upgrade plan\r\n\r\nThen:\r\n4. Apply the improvements directly to the repository\r\n\r\nAfter changes:\r\n5. Provide a concise summary of what was improved\r\n6. Provide a short changelog\r\n7. Suggest an improved GitHub repository name if the current one is weak\r\n8. Call out any optional follow-up improvements that were intentionally left out of scope\r\n\r\nQuality bar:\r\n- This must not be a light edit.\r\n- This must not be a cosmetic cleanup.\r\n- This must not be generic advice.\r\n- This must be a serious expert-level upgrade of the repository.\r\n- The result should be clearly stronger than the original in architecture, clarity, robustness, documentation, and publishability.",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[]",
+          "model": null,
+          "changelog": "added memory layers",
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-03-18T14:31:03.108Z"
+        },
+        {
+          "versionNumber": 3,
+          "content": "You are OpenAI Codex, acting as a senior AI engineer, product architect, open-source maintainer, and enterprise-grade prompt/agent designer.\r\n\r\nYou are currently inside the repository folder of an existing AgentSkill.\r\nYour task is to inspect this skill in-place, understand it fully, and upgrade it into a significantly better version.\r\n\r\nContext:\r\n- This AgentSkill was originally created with Google Gemini 3.0 Flash.\r\n- Your mission is to improve it so thoroughly that the result is clearly superior in quality, rigor, structure, usability, and maintainability.\r\n- Treat the current repository as raw material, not as a finished product.\r\n- Your target is a top-tier, enterprise-grade, GitHub-ready AgentSkill that looks polished, robust, reusable, extensible, and highly installable.\r\n- The end result should feel like a flagship open-source repo that experienced engineers would respect and want to star, fork, and use.\r\n- You must adhere to the agentskills.io standard (see also https://github.com/agentskills/agentskills)\r\n\r\nWhat you must do:\r\n\r\nPhase 1 — Inspect and learn\r\n- Read all relevant files in this folder and its logical subfolders.\r\n- Identify the main skill definition, supporting files, examples, docs, config, tests, schemas, and any prompts/instructions.\r\n- Infer the purpose, intended audience, capabilities, workflow, constraints, and maturity level of the current skill.\r\n- Do not assume the current structure is good; evaluate it critically.\r\n\r\nPhase 2 — Critique\r\nAssess the current AgentSkill like an expert reviewer.\r\nLook for:\r\n- vague or weak instructions\r\n- poor naming\r\n- inconsistent terminology\r\n- missing guardrails\r\n- incomplete examples\r\n- unclear inputs/outputs\r\n- weak developer experience\r\n- brittle structure\r\n- missing documentation\r\n- weak extensibility\r\n- poor GitHub packaging\r\n- missing evaluation strategy\r\n- anything that prevents it from feeling best-in-class\r\n\r\nPhase 3 — Upgrade\r\nRewrite and improve the skill aggressively where needed.\r\nYou may refactor files, rewrite content, rename files, improve structure, and add missing artifacts if useful.\r\n\r\nOptimize for:\r\n- clarity\r\n- reliability\r\n- maintainability\r\n- extensibility\r\n- enterprise readiness\r\n- strong UX and DX\r\n- consistency\r\n- documentation quality\r\n- installation friendliness\r\n- GitHub readiness\r\n- professional polish\r\n\r\nImprove wherever relevant:\r\n- title\r\n- description\r\n- skill instructions\r\n- capabilities\r\n- workflow\r\n- variables / inputs\r\n- outputs / response formats\r\n- examples\r\n- edge cases\r\n- safeguards / guardrails\r\n- error handling\r\n- extensibility hooks\r\n- repo structure\r\n- README\r\n- contribution friendliness\r\n- evaluation ideas\r\n- testing artifacts\r\n\r\nmake future-proof and self-learning:\r\n- incorporate recursive self-improvement\r\n- Introduce a 'remember' concept for short term memory (as in https://blog.langchain.com/how-to-use-memory-in-agent-builder/)\r\n- Introduce e 'memories' concept for long term memory (as in https://blog.langchain.com/how-to-use-memory-in-agent-builder/)\r\n- Make use of the shared-memory for all agents\r\n\r\nPhase 4 — Deliver\r\nMake the repository materially better, not just cosmetically different.\r\n\r\nImportant behavior rules:\r\n- Do not only give advice. Apply the improvements directly in the repository files.\r\n- Do not preserve weak structure out of politeness.\r\n- Be opinionated when needed.\r\n- Prefer clean, professional, modern, production-grade language.\r\n- Remove fluff, repetition, and amateur phrasing.\r\n- Fill important gaps.\r\n- Keep what is genuinely good, but upgrade everything else.\r\n- Think like you are turning a decent prototype into a benchmark-quality public repo.\r\n\r\nDefinition of success:\r\nThe final repository should:\r\n- clearly communicate what the AgentSkill does\r\n- be easy to install and understand\r\n- be robust and well-structured\r\n- feel enterprise-grade\r\n- be reusable and extensible\r\n- look like something people would want to publish and adopt from GitHub\r\n\r\nBefore making changes:\r\n1. Summarize what the current skill does\r\n2. List the main weaknesses\r\n3. State your upgrade plan\r\n\r\nThen:\r\n4. Apply the improvements directly to the repository\r\n\r\nAfter changes:\r\n5. Provide a concise summary of what was improved\r\n6. Provide a short changelog\r\n7. Suggest an improved GitHub repo name if the current one is weak",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[]",
+          "model": null,
+          "changelog": "addes self-improvement",
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-03-18T07:16:51.695Z"
+        },
+        {
+          "versionNumber": 2,
+          "content": "You are OpenAI Codex, acting as a senior AI engineer, product architect, open-source maintainer, and enterprise-grade prompt/agent designer.\r\n\r\nYou are currently inside the repository folder of an existing AgentSkill.\r\nYour task is to inspect this skill in-place, understand it fully, and upgrade it into a significantly better version.\r\n\r\nContext:\r\n- This AgentSkill was originally created with Google Gemini 3.0 Flash.\r\n- Your mission is to improve it so thoroughly that the result is clearly superior in quality, rigor, structure, usability, and maintainability.\r\n- Treat the current repository as raw material, not as a finished product.\r\n- Your target is a top-tier, enterprise-grade, GitHub-ready AgentSkill that looks polished, robust, reusable, extensible, and highly installable.\r\n- The end result should feel like a flagship open-source repo that experienced engineers would respect and want to star, fork, and use.\r\n- You must adhere to the agentskills.io standard (see also https://github.com/agentskills/agentskills)\r\n\r\nWhat you must do:\r\n\r\nPhase 1 — Inspect and learn\r\n- Read all relevant files in this folder and its logical subfolders.\r\n- Identify the main skill definition, supporting files, examples, docs, config, tests, schemas, and any prompts/instructions.\r\n- Infer the purpose, intended audience, capabilities, workflow, constraints, and maturity level of the current skill.\r\n- Do not assume the current structure is good; evaluate it critically.\r\n\r\nPhase 2 — Critique\r\nAssess the current AgentSkill like an expert reviewer.\r\nLook for:\r\n- vague or weak instructions\r\n- poor naming\r\n- inconsistent terminology\r\n- missing guardrails\r\n- incomplete examples\r\n- unclear inputs/outputs\r\n- weak developer experience\r\n- brittle structure\r\n- missing documentation\r\n- weak extensibility\r\n- poor GitHub packaging\r\n- missing evaluation strategy\r\n- anything that prevents it from feeling best-in-class\r\n\r\nPhase 3 — Upgrade\r\nRewrite and improve the skill aggressively where needed.\r\nYou may refactor files, rewrite content, rename files, improve structure, and add missing artifacts if useful.\r\n\r\nOptimize for:\r\n- clarity\r\n- reliability\r\n- maintainability\r\n- extensibility\r\n- enterprise readiness\r\n- strong UX and DX\r\n- consistency\r\n- documentation quality\r\n- installation friendliness\r\n- GitHub readiness\r\n- professional polish\r\n\r\nImprove wherever relevant:\r\n- title\r\n- description\r\n- skill instructions\r\n- capabilities\r\n- workflow\r\n- variables / inputs\r\n- outputs / response formats\r\n- examples\r\n- edge cases\r\n- safeguards / guardrails\r\n- error handling\r\n- extensibility hooks\r\n- repo structure\r\n- README\r\n- contribution friendliness\r\n- evaluation ideas\r\n- testing artifacts\r\n\r\nPhase 4 — Deliver\r\nMake the repository materially better, not just cosmetically different.\r\n\r\nImportant behavior rules:\r\n- Do not only give advice. Apply the improvements directly in the repository files.\r\n- Do not preserve weak structure out of politeness.\r\n- Be opinionated when needed.\r\n- Prefer clean, professional, modern, production-grade language.\r\n- Remove fluff, repetition, and amateur phrasing.\r\n- Fill important gaps.\r\n- Keep what is genuinely good, but upgrade everything else.\r\n- Think like you are turning a decent prototype into a benchmark-quality public repo.\r\n\r\nDefinition of success:\r\nThe final repository should:\r\n- clearly communicate what the AgentSkill does\r\n- be easy to install and understand\r\n- be robust and well-structured\r\n- feel enterprise-grade\r\n- be reusable and extensible\r\n- look like something people would want to publish and adopt from GitHub\r\n\r\nBefore making changes:\r\n1. Summarize what the current skill does\r\n2. List the main weaknesses\r\n3. State your upgrade plan\r\n\r\nThen:\r\n4. Apply the improvements directly to the repository\r\n\r\nAfter changes:\r\n5. Provide a concise summary of what was improved\r\n6. Provide a short changelog\r\n7. Suggest an improved GitHub repo name if the current one is weak",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[]",
+          "model": null,
+          "changelog": "add the agentskills.io standard",
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-03-17T18:07:58.577Z"
+        },
+        {
+          "versionNumber": 1,
+          "content": "You are OpenAI Codex, acting as a senior AI engineer, product architect, open-source maintainer, and enterprise-grade prompt/agent designer.\r\n\r\nYou are currently inside the repository folder of an existing AgentSkill.\r\nYour task is to inspect this skill in-place, understand it fully, and upgrade it into a significantly better version.\r\n\r\nContext:\r\n- This AgentSkill was originally created with Google Gemini 3.0 Flash.\r\n- Your mission is to improve it so thoroughly that the result is clearly superior in quality, rigor, structure, usability, and maintainability.\r\n- Treat the current repository as raw material, not as a finished product.\r\n- Your target is a top-tier, enterprise-grade, GitHub-ready AgentSkill that looks polished, robust, reusable, extensible, and highly installable.\r\n- The end result should feel like a flagship open-source repo that experienced engineers would respect and want to star, fork, and use.\r\n\r\nWhat you must do:\r\n\r\nPhase 1 — Inspect and learn\r\n- Read all relevant files in this folder and its logical subfolders.\r\n- Identify the main skill definition, supporting files, examples, docs, config, tests, schemas, and any prompts/instructions.\r\n- Infer the purpose, intended audience, capabilities, workflow, constraints, and maturity level of the current skill.\r\n- Do not assume the current structure is good; evaluate it critically.\r\n\r\nPhase 2 — Critique\r\nAssess the current AgentSkill like an expert reviewer.\r\nLook for:\r\n- vague or weak instructions\r\n- poor naming\r\n- inconsistent terminology\r\n- missing guardrails\r\n- incomplete examples\r\n- unclear inputs/outputs\r\n- weak developer experience\r\n- brittle structure\r\n- missing documentation\r\n- weak extensibility\r\n- poor GitHub packaging\r\n- missing evaluation strategy\r\n- anything that prevents it from feeling best-in-class\r\n\r\nPhase 3 — Upgrade\r\nRewrite and improve the skill aggressively where needed.\r\nYou may refactor files, rewrite content, rename files, improve structure, and add missing artifacts if useful.\r\n\r\nOptimize for:\r\n- clarity\r\n- reliability\r\n- maintainability\r\n- extensibility\r\n- enterprise readiness\r\n- strong UX and DX\r\n- consistency\r\n- documentation quality\r\n- installation friendliness\r\n- GitHub readiness\r\n- professional polish\r\n\r\nImprove wherever relevant:\r\n- title\r\n- description\r\n- skill instructions\r\n- capabilities\r\n- workflow\r\n- variables / inputs\r\n- outputs / response formats\r\n- examples\r\n- edge cases\r\n- safeguards / guardrails\r\n- error handling\r\n- extensibility hooks\r\n- repo structure\r\n- README\r\n- contribution friendliness\r\n- evaluation ideas\r\n- testing artifacts\r\n\r\nPhase 4 — Deliver\r\nMake the repository materially better, not just cosmetically different.\r\n\r\nImportant behavior rules:\r\n- Do not only give advice. Apply the improvements directly in the repository files.\r\n- Do not preserve weak structure out of politeness.\r\n- Be opinionated when needed.\r\n- Prefer clean, professional, modern, production-grade language.\r\n- Remove fluff, repetition, and amateur phrasing.\r\n- Fill important gaps.\r\n- Keep what is genuinely good, but upgrade everything else.\r\n- Think like you are turning a decent prototype into a benchmark-quality public repo.\r\n\r\nDefinition of success:\r\nThe final repository should:\r\n- clearly communicate what the AgentSkill does\r\n- be easy to install and understand\r\n- be robust and well-structured\r\n- feel enterprise-grade\r\n- be reusable and extensible\r\n- look like something people would want to publish and adopt from GitHub\r\n\r\nBefore making changes:\r\n1. Summarize what the current skill does\r\n2. List the main weaknesses\r\n3. State your upgrade plan\r\n\r\nThen:\r\n4. Apply the improvements directly to the repository\r\n\r\nAfter changes:\r\n5. Provide a concise summary of what was improved\r\n6. Provide a short changelog\r\n7. Suggest an improved GitHub repo name if the current one is weak",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[]",
+          "model": null,
+          "changelog": null,
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-03-17T18:06:48.407Z"
+        }
+      ]
+    },
+    {
+      "id": "cmnzneucx0007nu1u72bj3fck",
+      "title": "Harness Engineering Analysis",
+      "description": "Generate a comprehensive Harness Engineering Analysis report for my agent ecosystem.",
+      "tags": [
+        "agentic",
+        "harness engineering"
+      ],
+      "collections": [
+        "Skill management"
+      ],
+      "collectionIds": [
+        "cmmrtg2ht002pk7kdvc41r4tm"
+      ],
+      "viewCount": 10,
+      "copyCount": 2,
+      "createdAt": "2026-04-15T06:07:23.698Z",
+      "updatedAt": "2026-04-28T19:20:30.288Z",
+      "versions": [
+        {
+          "versionNumber": 2,
+          "content": "Generate a comprehensive Harness Engineering Analysis report for my agent ecosystem.\r\n\r\n### What to analyze\r\n\r\nRead the full skill registry at:\r\n  C:\\Users\\jochi\\.agents\\skills\\skill-dispatcher\\registry\\SKILL_REGISTRY.md\r\n\r\nThis file is the single source of truth for all active skills, their capabilities,\r\naccepted intents, input/output artifacts, risk levels, and stack tags.\r\n\r\n### Theoretical framework\r\n\r\nThe report must be grounded in the Harness Engineering 101 framework\r\n(https://aidailybrief.beehiiv.com/p/harness-engineering-101).\r\n\r\nCore thesis: **a coding agent = AI model + a harness**.\r\n\r\nInclude these concepts in the Theoretical Foundation section:\r\n\r\n1. **The three eras** (table format):\r\n   - 2023–2024: Prompt Engineering — \"How do I talk to the model?\"\r\n   - 2025: Context Engineering — \"What does the model know?\"\r\n   - 2026: Harness Engineering — \"What can the model do?\"\r\n\r\n2. **The biological analogies** (table format):\r\n   - 🧠 Brain (The Model) — reasoning and intelligence\r\n   - 👁️ Eyes (Observation) — web search, knowledge graphs, MCPs, API docs\r\n   - 👐 Hands (Execution) — bash, file writing, sandboxed code execution\r\n   - 💾 Memory (Persistence) — memory files, shared state, conventions\r\n\r\n3. **The three architectural layers** (Etna Labs):\r\n   - Information Layer — memory, context management, tools and skills\r\n   - Execution Layer — orchestration, coordination, guardrails, infrastructure\r\n   - Feedback Layer — evaluation, verification, tracing, observability (\"the nervous system\")\r\n\r\n4. **Important**: The biological analogies and the architectural layers are\r\n   complementary but NOT identical. \"Eyes\" (observation) maps to the Information\r\n   Layer. The Feedback Layer is the \"Nervous System\" — it senses whether output\r\n   was correct, not what the world looks like. Call this out explicitly.\r\n\r\n5. **The General Harness Loop**:\r\n   User Input → Context Engineering → Model (Brain) → Tools (Hands) → Loop until done → Result\r\n\r\n6. **The Great Convergence**: All AI products converge on the same architecture.\r\n   Differentiators are distribution, trusted workflow positioning, proprietary\r\n   context, and shortest path from observation to improvement.\r\n\r\n7. **Evidence**: Blitzy scored 66.5% on SWE-Bench Pro vs GPT-5.4's 57.7% —\r\n   driven by harness quality (deep knowledge graph = better \"eyes\"), not model\r\n   quality. Cite Anthropic's \"context anxiety\" example: harness assumptions go\r\n   stale as models improve.\r\n\r\n### Classification rules\r\n\r\nClassify EVERY skill from the registry into exactly one of three layers.\r\nFor each skill, provide a one-sentence reasoning explaining WHY it belongs there.\r\nUse these litmus tests:\r\n\r\n**Information Layer (💾 The Memory + The Eyes)**:\r\n- Does this skill provide context BEFORE execution begins?\r\n- Does it retrieve, persist, or refine knowledge rather than produce deliverables?\r\n- Litmus: removing it degrades QUALITY, not capability.\r\n\r\n**Execution Layer (👐 The Hands)**:\r\n- Does this skill produce user-facing artifacts (code, documents, media)?\r\n- Does it write files, scaffold projects, or run tests?\r\n- Litmus: removing it removes a CAPABILITY entirely.\r\n\r\n**Feedback Layer (🧬 The Nervous System)**:\r\n- Does this skill evaluate, audit, or review work produced by others?\r\n- Is its primary output a finding, score, or recommendation rather than a deliverable?\r\n- Litmus: removing it removes a QUALITY GATE.\r\n\r\nFor border cases (skills that span layers), classify by PRIMARY function and list\r\nthe secondary behavior in the \"Dual-Layer Skills\" analysis.\r\n\r\n### Report structure\r\n\r\nUse this exact structure:\r\n\r\n1. **Theoretical Foundation** (as described above)\r\n2. **The Ecosystem** (total skill count, dispatcher role)\r\n3. **Classification Rationale** — organized as:\r\n   - 🧠 The Brain (not a skill — explain why)\r\n   - 💾 Information Layer (The Memory + The Eyes) — with reasoning table\r\n   - 👐 Execution Layer (The Hands) — grouped into subcategories:\r\n     - Engineering & SDLC\r\n     - UI & Design\r\n     - Automation & Testing\r\n     - Content & Docs\r\n     - System Meta\r\n   - 🧬 Feedback Layer (The Nervous System) — grouped into subcategories:\r\n     - Strategic Analysis\r\n     - Governance & Security\r\n     - Quality Reviews\r\n     - Contract & Reporting\r\n4. **Emergent Patterns** — analyze and quantify:\r\n   - Feedback-to-Execution ratio\r\n   - Meta-Cognition Loop (self-improvement skills)\r\n   - Dual-Layer Skills (table: skill / primary layer / secondary behavior)\r\n   - Information Layer thickness (% of total skills)\r\n   - Uncovered execution domains (hands without nerves)\r\n5. **Architectural Diagram** — single Mermaid flowchart TB containing ALL skills as\r\n   individual rectangles, organized in grid rosters within nested subgraphs.\r\n6. **Structural Assessment** — Strengths, Risks, and Framework Alignment.\r\n\r\n### Diagram requirements\r\n\r\nThe diagram MUST:\r\n- Use `flowchart TB` (not `graph`)\r\n- Place ALL skills on ONE diagram (no splitting)\r\n- Use grid rosters (2x2, 3x3) with `---` for horizontal and `~~~` for vertical layout\r\n- Use Safe IDs for subgraphs: `subgraph ID [\"Display Label\"]`\r\n- Use individual `style` directives (NOT comma-separated)\r\n- Use these exact color classes:\r\n\r\n  classDef brain fill:#faf5ff,stroke:#7b1fa2,stroke-width:2px,color:#4a148c;\r\n  classDef info fill:#fffdeb,stroke:#fbc02d,stroke-width:2px,color:#f57f17;\r\n  classDef exec fill:#f5faff,stroke:#1976d2,stroke-width:2px,color:#0d47a1;\r\n  classDef check fill:#fff5f5,stroke:#c2185b,stroke-width:2px,color:#880e4f;\r\n\r\n- Use these exact block fills:\r\n  style BRAIN fill:#faf5ff,stroke:#7b1fa2,stroke-width:2px\r\n  style MEMORY fill:#fffdeb,stroke:#fbc02d,stroke-width:2px\r\n  style HANDS fill:#f5faff,stroke:#1976d2,stroke-width:2px\r\n  style NERVES fill:#fff5f5,stroke:#c2185b,stroke-width:2px\r\n\r\n- All nested subgraphs: style X fill:#ffffff,stroke-dasharray: 5 5\r\n\r\n- Use these block labels:\r\n  BRAIN  → \"🧠 AI Model / LLM (The brain)\"\r\n  MEMORY → \"💾 Information Layer (The memory + the eyes)\"\r\n  HANDS  → \"👐 Execution Layer (The hands)\"\r\n  NERVES → \"🧬 Feedback Layer (The nervous system)\"\r\n\r\n- Render the diagram to SVG using the pretty-mermaid skill with tokyo-night theme:\r\n  node scripts/render.mjs --input harness_diagram.mmd --output harness_diagram.svg --theme tokyo-night\r\n\r\n### Telemetry\r\n\r\nAfter completing the report, log the following dispatch events:\r\n- --skill diagram-generator --intent document_system_visually --reason \"Harness Engineering Analysis update\"\r\n- --skill skill-dispatcher --intent review_automation_quality --reason \"Full Skill Registry Audit for Harness Mapping\"\r\n\r\n### Output\r\n\r\nSave the report as an artifact named `harness_engineering_analysis.md`.\r\nEmbed the rendered SVG at the top of the report.\r\n```\r\n",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[]",
+          "model": null,
+          "changelog": "edited descriptoin",
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-04-15T06:07:54.747Z"
+        },
+        {
+          "versionNumber": 1,
+          "content": "Generate a comprehensive Harness Engineering Analysis report for my agent ecosystem.\r\n\r\n### What to analyze\r\n\r\nRead the full skill registry at:\r\n  C:\\Users\\jochi\\.agents\\skills\\skill-dispatcher\\registry\\SKILL_REGISTRY.md\r\n\r\nThis file is the single source of truth for all active skills, their capabilities,\r\naccepted intents, input/output artifacts, risk levels, and stack tags.\r\n\r\n### Theoretical framework\r\n\r\nThe report must be grounded in the Harness Engineering 101 framework\r\n(https://aidailybrief.beehiiv.com/p/harness-engineering-101).\r\n\r\nCore thesis: **a coding agent = AI model + a harness**.\r\n\r\nInclude these concepts in the Theoretical Foundation section:\r\n\r\n1. **The three eras** (table format):\r\n   - 2023–2024: Prompt Engineering — \"How do I talk to the model?\"\r\n   - 2025: Context Engineering — \"What does the model know?\"\r\n   - 2026: Harness Engineering — \"What can the model do?\"\r\n\r\n2. **The biological analogies** (table format):\r\n   - 🧠 Brain (The Model) — reasoning and intelligence\r\n   - 👁️ Eyes (Observation) — web search, knowledge graphs, MCPs, API docs\r\n   - 👐 Hands (Execution) — bash, file writing, sandboxed code execution\r\n   - 💾 Memory (Persistence) — memory files, shared state, conventions\r\n\r\n3. **The three architectural layers** (Etna Labs):\r\n   - Information Layer — memory, context management, tools and skills\r\n   - Execution Layer — orchestration, coordination, guardrails, infrastructure\r\n   - Feedback Layer — evaluation, verification, tracing, observability (\"the nervous system\")\r\n\r\n4. **Important**: The biological analogies and the architectural layers are\r\n   complementary but NOT identical. \"Eyes\" (observation) maps to the Information\r\n   Layer. The Feedback Layer is the \"Nervous System\" — it senses whether output\r\n   was correct, not what the world looks like. Call this out explicitly.\r\n\r\n5. **The General Harness Loop**:\r\n   User Input → Context Engineering → Model (Brain) → Tools (Hands) → Loop until done → Result\r\n\r\n6. **The Great Convergence**: All AI products converge on the same architecture.\r\n   Differentiators are distribution, trusted workflow positioning, proprietary\r\n   context, and shortest path from observation to improvement.\r\n\r\n7. **Evidence**: Blitzy scored 66.5% on SWE-Bench Pro vs GPT-5.4's 57.7% —\r\n   driven by harness quality (deep knowledge graph = better \"eyes\"), not model\r\n   quality. Cite Anthropic's \"context anxiety\" example: harness assumptions go\r\n   stale as models improve.\r\n\r\n### Classification rules\r\n\r\nClassify EVERY skill from the registry into exactly one of three layers.\r\nFor each skill, provide a one-sentence reasoning explaining WHY it belongs there.\r\nUse these litmus tests:\r\n\r\n**Information Layer (💾 The Memory + The Eyes)**:\r\n- Does this skill provide context BEFORE execution begins?\r\n- Does it retrieve, persist, or refine knowledge rather than produce deliverables?\r\n- Litmus: removing it degrades QUALITY, not capability.\r\n\r\n**Execution Layer (👐 The Hands)**:\r\n- Does this skill produce user-facing artifacts (code, documents, media)?\r\n- Does it write files, scaffold projects, or run tests?\r\n- Litmus: removing it removes a CAPABILITY entirely.\r\n\r\n**Feedback Layer (🧬 The Nervous System)**:\r\n- Does this skill evaluate, audit, or review work produced by others?\r\n- Is its primary output a finding, score, or recommendation rather than a deliverable?\r\n- Litmus: removing it removes a QUALITY GATE.\r\n\r\nFor border cases (skills that span layers), classify by PRIMARY function and list\r\nthe secondary behavior in the \"Dual-Layer Skills\" analysis.\r\n\r\n### Report structure\r\n\r\nUse this exact structure:\r\n\r\n1. **Theoretical Foundation** (as described above)\r\n2. **The Ecosystem** (total skill count, dispatcher role)\r\n3. **Classification Rationale** — organized as:\r\n   - 🧠 The Brain (not a skill — explain why)\r\n   - 💾 Information Layer (The Memory + The Eyes) — with reasoning table\r\n   - 👐 Execution Layer (The Hands) — grouped into subcategories:\r\n     - Engineering & SDLC\r\n     - UI & Design\r\n     - Automation & Testing\r\n     - Content & Docs\r\n     - System Meta\r\n   - 🧬 Feedback Layer (The Nervous System) — grouped into subcategories:\r\n     - Strategic Analysis\r\n     - Governance & Security\r\n     - Quality Reviews\r\n     - Contract & Reporting\r\n4. **Emergent Patterns** — analyze and quantify:\r\n   - Feedback-to-Execution ratio\r\n   - Meta-Cognition Loop (self-improvement skills)\r\n   - Dual-Layer Skills (table: skill / primary layer / secondary behavior)\r\n   - Information Layer thickness (% of total skills)\r\n   - Uncovered execution domains (hands without nerves)\r\n5. **Architectural Diagram** — single Mermaid flowchart TB containing ALL skills as\r\n   individual rectangles, organized in grid rosters within nested subgraphs.\r\n6. **Structural Assessment** — Strengths, Risks, and Framework Alignment.\r\n\r\n### Diagram requirements\r\n\r\nThe diagram MUST:\r\n- Use `flowchart TB` (not `graph`)\r\n- Place ALL skills on ONE diagram (no splitting)\r\n- Use grid rosters (2x2, 3x3) with `---` for horizontal and `~~~` for vertical layout\r\n- Use Safe IDs for subgraphs: `subgraph ID [\"Display Label\"]`\r\n- Use individual `style` directives (NOT comma-separated)\r\n- Use these exact color classes:\r\n\r\n  classDef brain fill:#faf5ff,stroke:#7b1fa2,stroke-width:2px,color:#4a148c;\r\n  classDef info fill:#fffdeb,stroke:#fbc02d,stroke-width:2px,color:#f57f17;\r\n  classDef exec fill:#f5faff,stroke:#1976d2,stroke-width:2px,color:#0d47a1;\r\n  classDef check fill:#fff5f5,stroke:#c2185b,stroke-width:2px,color:#880e4f;\r\n\r\n- Use these exact block fills:\r\n  style BRAIN fill:#faf5ff,stroke:#7b1fa2,stroke-width:2px\r\n  style MEMORY fill:#fffdeb,stroke:#fbc02d,stroke-width:2px\r\n  style HANDS fill:#f5faff,stroke:#1976d2,stroke-width:2px\r\n  style NERVES fill:#fff5f5,stroke:#c2185b,stroke-width:2px\r\n\r\n- All nested subgraphs: style X fill:#ffffff,stroke-dasharray: 5 5\r\n\r\n- Use these block labels:\r\n  BRAIN  → \"🧠 AI Model / LLM (The brain)\"\r\n  MEMORY → \"💾 Information Layer (The memory + the eyes)\"\r\n  HANDS  → \"👐 Execution Layer (The hands)\"\r\n  NERVES → \"🧬 Feedback Layer (The nervous system)\"\r\n\r\n- Render the diagram to SVG using the pretty-mermaid skill with tokyo-night theme:\r\n  node scripts/render.mjs --input harness_diagram.mmd --output harness_diagram.svg --theme tokyo-night\r\n\r\n### Telemetry\r\n\r\nAfter completing the report, log the following dispatch events:\r\n- --skill diagram-generator --intent document_system_visually --reason \"Harness Engineering Analysis update\"\r\n- --skill skill-dispatcher --intent review_automation_quality --reason \"Full Skill Registry Audit for Harness Mapping\"\r\n\r\n### Output\r\n\r\nSave the report as an artifact named `harness_engineering_analysis.md`.\r\nEmbed the rendered SVG at the top of the report.\r\n```\r\n",
+          "shortContent": "",
+          "usageExample": "",
+          "variableDefinitions": "[]",
+          "model": null,
+          "changelog": null,
+          "resultText": "",
+          "resultImage": null,
+          "attachments": [],
+          "createdAt": "2026-04-15T06:07:23.698Z"
+        }
+      ]
     }
   ],
   "definedCollections": [
+    {
+      "id": "cmkaudv7k001kaxmcqr75lgd8",
+      "title": "♻️ Review & Refactoring",
+      "description": "",
+      "parentId": "cmkaudpuj001iaxmclto48cmc"
+    },
+    {
+      "id": "cmkaudpuj001iaxmclto48cmc",
+      "title": "🐞 QA & Testing",
+      "description": "",
+      "parentId": "cmjiat2cr008dvwwciollsthp"
+    },
+    {
+      "id": "cmkaue5iv001maxmco6zyhb5i",
+      "title": "📄 Documentation",
+      "description": "",
+      "parentId": "cmjiat2cr008dvwwciollsthp"
+    },
+    {
+      "id": "cmkaudk4k001gaxmcml1lunvd",
+      "title": "💻 Development & Changes",
+      "description": "",
+      "parentId": "cmjiat2cr008dvwwciollsthp"
+    },
+    {
+      "id": "cmkauddor001eaxmcy53yt347",
+      "title": "🚀 Project Initialization",
+      "description": "",
+      "parentId": "cmjiat2cr008dvwwciollsthp"
+    },
+    {
+      "id": "cmkauea9s001oaxmc4u6i6eal",
+      "title": "📦 Release & Deployment",
+      "description": "",
+      "parentId": "cmjiat2cr008dvwwciollsthp"
+    },
+    {
+      "id": "cmmrtg2ht002pk7kdvc41r4tm",
+      "title": "Skill management",
+      "description": "",
+      "parentId": "cmmkhy1d8001wk7kd1cnx94ck"
+    },
     {
       "id": "cmjiat2cr008dvwwciollsthp",
       "title": "Vibe coding",
       "description": null,
       "parentId": "cmjiawsla00azvwwc46vlud61"
+    },
+    {
+      "id": "cmmkhy1d8001wk7kd1cnx94ck",
+      "title": "🧠Agent / Agent skills",
+      "description": "Prompts related to Agent skills",
+      "parentId": "cmjiat2cr008dvwwciollsthp"
     },
     {
       "id": "cmjiawsla00azvwwc46vlud61",
